@@ -1,2 +1,3 @@
-# DCGWJS
-Domesticate catgirls with JavaScript
+# Domesticated Catgirls
+Web application to domesticate Catgirls.
+Using JavaScript and jQuery.
