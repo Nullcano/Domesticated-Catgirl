@@ -8,13 +8,13 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 768px;
-  height: 512px;
+  height: 326px;
   background: rgba(0,0,0,.5);
 }
 .room {
   display: flex;
-  width: 704px;
-  height: 384px;
+  width: 512px;
+  height: 256px;
   background: url(../img/default-wall.png) top left;
 }
 .window {
@@ -29,27 +29,17 @@ body {
 .clock {
   position: absolute;
   margin-top: 64px;
-  margin-left: 512px;
+  margin-left: 356px;
   padding: 0px 4px;
   font-size: 24px;
   background: #000;
-  border: 4px solid #00baff;
+  border: 4px solid #444;
 }
 .catgirl {
   position: absolute;
-  margin-top: 44px;
+  margin-top: 92px;
   margin-left: 256px;
-  width: 130px;
-  height: 340px;
+  width: 84px;
+  height: 164px;
   background: url(../img/girl-base.png);
-}
-.darkshade {
-  width: 50%;
-  height: 100%;
-  background: rgba(0,0,0,.1);
-}
-.lightshade {
-  width: 50%;
-  height: 100%;
-  background: rgba(128,128,128,.1);
 }
