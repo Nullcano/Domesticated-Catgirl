@@ -12,22 +12,38 @@
     <link href="css/style.css" rel="stylesheet">
   </head>
   <body class="w-100 bg-near-black near-white" onload="load()">
-    <div class="gamewrapper">
-      <div class="topbar absolute">
-        <span class="">User</span><span class="">'s Catgirl</span>
-        <span id="currentTime" class="">Time</span>
-      </div>
-      <div class="room">
-        <div class="window"></div>
-        <div id="clock" class="clock"></div>
-        <div class="catgirl"></div>
-        <div class="darkshade"></div>
-        <div class="lightshade"></div>
-      </div>
-      <div class="info">
-
-      </div>
-    </div>
+    <main class="gamewrapper">
+      <header class="pa2 w-100 bg-black">
+        <span class="" contenteditable="true">User</span><span class="">'s Catgirl</span>
+        <span id="date" class="">Date</span>
+      </header>
+      <section class="flex">
+        <article class="room">
+          <div class="window"></div>
+          <div id="clock" class="clock"></div>
+          <div class="catgirl"></div>
+          <div class="darkshade"></div>
+          <div class="lightshade"></div>
+        </article>
+        <aside class="actions">
+          <ul class="list f3">
+            <li onclick="work()" class="pa2 pointer">Go to work</li>
+            <li id="store" class="pa2 pointer">Grocery store</li>
+            <li id="shop" class="pa2 pointer">Gift shop</li>
+            <div class="flex">
+              <li onclick="save()" class="ma2 ph2 pointer ba bw1">Save</li>
+              <li onclick="load()" class="ma2 ph2 pointer ba bw1">Load</li>
+            </div>
+          </ul>
+        </aside>
+      </section>
+      <footer class="pa2 w-100 bg-black">
+        <ul class="ma0 pa0 list">
+          <li>$ <span id="currentmoney"></span> |</li>
+        </ul>
+      </footer>
+    </main>
+    <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
