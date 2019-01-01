@@ -11,39 +11,55 @@
     <link href="css/tachyons.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
   </head>
-  <body class="w-100 bg-near-black near-white" onload="load()">
+  <body class="w-100 bg-near-black near-white ttu">
     <main class="gamewrapper">
-      <header class="pa2 w-100 bg-black">
-        <span class="" contenteditable="true">User</span><span class="">'s Catgirl</span>
-        <span id="date" class="">Date</span>
+      <header class="pa2 w-100 bg-black flex justify-between">
+        <div>
+          <span class="" contenteditable="true">User</span><span class="">'s Catgirl</span>
+        </div>
+        <span id="cal" class=""></span>
       </header>
       <section class="flex">
-        <article class="room">
-          <div class="window"></div>
+        <article class="home db">
+          <div id="window" class="window"></div>
           <div id="clock" class="clock"></div>
+          <div class="bed"></div>
           <div class="catgirl"></div>
           <div class="darkshade"></div>
           <div class="lightshade"></div>
         </article>
+        <article class="store dn">
+          <h1 class="ma2">Grocery store</h1>
+        </article>
+        <article class="gifts dn">
+          <h1 class="ma2">Gift shop</h1>
+          <div id="bed" class="w4 tc ma2 pa2 pointer ba bw1">
+            <span class="db">Bed [$50]</span>
+            <img class="db w3 center" src="img/bed.png">
+          </div>
+        </article>
         <aside class="actions">
-          <ul class="list f3">
-            <li onclick="work()" class="pa2 pointer">Go to work</li>
-            <li id="store" class="pa2 pointer">Grocery store</li>
-            <li id="shop" class="pa2 pointer">Gift shop</li>
-            <div class="flex">
-              <li onclick="save()" class="ma2 ph2 pointer ba bw1">Save</li>
-              <li onclick="load()" class="ma2 ph2 pointer ba bw1">Load</li>
-            </div>
+          <ul class="ma0 pa0 list tc">
+            <input id="home" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Home"/>
+            <input id="work" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Work"/>
+            <input id="store" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Store"/>
+            <input id="gifts" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Gifts"/>
           </ul>
         </aside>
       </section>
       <footer class="pa2 w-100 bg-black">
-        <ul class="ma0 pa0 list">
-          <li>$ <span id="currentmoney"></span> |</li>
+        <ul class="ma0 pa0 list flex">
+          <li class="mr3">EXP: <span id="disp_xp">0</span></li>
+          <li class="mr3">$<span id="disp_money">0</span></li>
+          <li class="mr3"><span id="greeting"></span></li>
         </ul>
       </footer>
+      <ul id="eventLog" class="list ma0 pa2 w-100 bg-black">
+
+      </ul>
     </main>
     <script src="js/jquery.min.js"></script>
+    <script src="js/js.cookie.min.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
