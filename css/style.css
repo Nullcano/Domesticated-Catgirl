@@ -7,6 +7,16 @@ body {
   font-size: 16px;
   background: url(../img/bg.png) center center;
 }
+button {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,1);
+  color: rgba(255,255,255,1);
+}
+button:disabled {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.25);
+}
 .gamewrapper {
   position: absolute;
   top: 50%;
