@@ -23,7 +23,6 @@
         <article class="home db">
           <div id="window" class="window"></div>
           <div id="clock" class="clock"></div>
-          <div class="bed"></div>
           <div class="catgirl"></div>
           <div class="darkshade"></div>
           <div class="lightshade"></div>
@@ -33,24 +32,24 @@
         </article>
         <article class="gifts dn">
           <h1 class="ma2">Gift shop</h1>
-          <div id="bed" class="w4 tc ma2 pa2 pointer ba bw1">
+          <button id="buybed" class="w4 tc ma2 pa2 pointer ba bw1">
             <span class="db">Bed [$50]</span>
             <img class="db w3 center" src="img/bed.png">
-          </div>
+          </button>
         </article>
         <aside class="actions">
           <ul class="ma0 pa0 list tc">
-            <input id="home" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Home"/>
-            <input id="work" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Work"/>
-            <input id="store" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Store"/>
-            <input id="gifts" class="input-reset db w-100 ma2 pv2 pointer bg-transparent near-white ttu ba bw1 b--near-white" type="button" value="Gifts"/>
+            <button id="home" class="db w-100 ma2 pv2 pointer ttu">Home</button>
+            <button id="work" class="db w-100 ma2 pv2 pointer ttu">Work</button>
+            <button id="store" class="db w-100 ma2 pv2 pointer ttu">Store</button>
+            <button id="gifts" class="db w-100 ma2 pv2 pointer ttu">Gifts</button>
           </ul>
         </aside>
       </section>
       <footer class="pa2 w-100 bg-black">
         <ul class="ma0 pa0 list flex">
-          <li class="mr3">EXP: <span id="disp_xp">0</span></li>
-          <li class="mr3">$<span id="disp_money">0</span></li>
+          <li class="mr3">EXP: <span id="xp">0</span></li>
+          <li class="mr3">$<span id="money">0</span></li>
           <li class="mr3"><span id="greeting"></span></li>
         </ul>
       </footer>
