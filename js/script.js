@@ -1,8 +1,3 @@
-function load() {
-    greet();
-    calendar();
-}
-
 $(document).ready(function(){
   function displayTime(){
     var currentTime = new Date();
@@ -12,7 +7,6 @@ $(document).ready(function(){
     if (minutes < 10){
       minutes = "0" + minutes;
     }
-
     var meridiem = "AM";
     if (hours > 12){
       hours = hours - 12;
@@ -24,92 +18,146 @@ $(document).ready(function(){
     if (hours === 0 ){
       hours = 12;
     }
-
     var clockDiv = document.getElementById('clock');
     clockDiv.innerText = hours + ":" + minutes + " " + meridiem;
   }
-
   displayTime();
   setInterval(displayTime, 1000);
+
+  function daycycle(){
+    var currentTime = new Date();
+    var hours = currentTime.getHours();
+
+    if(hours>=6 && hours<=11){
+      document.getElementById('window').style.backgroundImage = "url(img/outside-day.gif)";
+      document.getElementById('greeting').innerHTML = "Good morning, Master!";
+    }
+    if(hours>=12 && hours<=16) {
+      document.getElementById('window').style.backgroundImage = "url(img/outside-day.gif)";
+      document.getElementById('greeting').innerHTML = "Good day, Master!";
+    }
+    if(hours>=17 && hours<=19) {
+      document.getElementById('window').style.backgroundImage = "url(img/outside-day.gif)";
+      document.getElementById('greeting').innerHTML = "Good afternoon, Master!";
+    }
+    if((hours>=20 && hours<=23) || (hours>=0 && hours<=5)) {
+      document.getElementById('window').style.backgroundImage = "url(img/outside-day.gif)";
+      document.getElementById('greeting').innerHTML = "Good night, Master!";
+    }
+  }
+  daycycle();
+  setInterval(daycycle, 1000);
+
+  function calendar(){
+    var currentTime = new Date();
+    var weekday = new Array(7);
+    weekday[0]=  "Sun";
+    weekday[1] = "Mon";
+    weekday[2] = "Tue";
+    weekday[3] = "Wed";
+    weekday[4] = "Thu";
+    weekday[5] = "Fri";
+    weekday[6] = "Sat";
+
+    var day = weekday[currentTime.getDay()];
+    var d = currentTime.getDate();
+    var month = new Array(12);
+    month[0] = "Jan";
+    month[1] = "Feb";
+    month[2] = "Mar";
+    month[3] = "Apr";
+    month[4] = "May";
+    month[5] = "Jun";
+    month[6] = "Jul";
+    month[7] = "Aug";
+    month[8] = "Sep";
+    month[9] = "Oct";
+    month[10] = "Nov";
+    month[11] = "Dec";
+
+    var m = month[currentTime.getUTCMonth()];
+    var total = day + ", " + m + " " + d;
+
+    document.getElementById('cal').innerHTML = total;
+  }
+  calendar();
+  setInterval(calendar, 1000);
 });
 
-function greet(){
-  var today = new Date();
-  var h = today.getHours();
-  console.log(h);
-
-  if(h>=6 && h<=11){
-    document.getElementById('img').style.backgroundImage = "url('img/morning2.jpg')";
-    document.getElementById('greeting').innerHTML = "Good morning, Master!";
-  }
-  if(h>=12 && h<=16) {
-    document.getElementById('img').style.backgroundImage = "url('img/day1.jpg')";
-    document.getElementById('greeting').innerHTML = "Good day, Master!";
-  }
-  if(h>=17 && h<=19) {
-    document.getElementById('img').style.backgroundImage = "url('img/noon1.jpg')";
-    document.getElementById('greeting').innerHTML = "Good afternoon, Master!";
-  }
-  if((h>=20 && h<=23) || (h>=0 && h<=5)){
-    document.getElementById('img').style.backgroundImage = "url('img/night1.jpg')";
-    document.getElementById('greeting').innerHTML = "Good night, Master!";
-  }
+var simdata = {
+  money : 0,
+  xp : 0,
+  cooldown : 5
 }
-function calendar(){
-  var today = new Date();
-  var weekday = new Array(7);
-  weekday[0]=  "Sun";
-  weekday[1] = "Mon";
-  weekday[2] = "Tue";
-  weekday[3] = "Wed";
-  weekday[4] = "Thu";
-  weekday[5] = "Fri";
-  weekday[6] = "Sat";
 
-  var day = weekday[today.getDay()];
-  var d = today.getDate();
-  var month = new Array(12);
-  month[0] = "Jan";
-  month[1] = "Feb";
-  month[2] = "Mar";
-  month[3] = "Apr";
-  month[4] = "May";
-  month[5] = "Jun";
-  month[6] = "Jul";
-  month[7] = "Aug";
-  month[8] = "Sep";
-  month[9] = "Oct";
-  month[10] = "Nov";
-  month[11] = "Dec";
+$(document).ready(function() {
+  loadGame();
 
-  var m = month[today.getUTCMonth()];
-  var total = day + " " + d + " " + m;
-  console.log(total);
+  $('#home').off().on('click',function() {
+    simdata.xp += 1;
+    $('.home').addClass('db').removeClass('dn');
+    $('.store').addClass('dn').removeClass('db');
+    $('.gifts').addClass('dn').removeClass('db');
+  });
 
-  document.getElementById('date').innerHTML = total;
-}
+  $('#work').off().on('click',function(){
+    simdata.xp += 1;
+    simdata.money += .5*simdata.xp;
+    eventLog('You earned $' + .5*simdata.xp + '');
+    var btn = $(this);
+    btn.prop('disabled', true);
+    setTimeout(function(){
+      btn.prop('disabled', false);
+    }, simdata.cooldown*1000);
+  });
+
+  $('#store').off().on('click',function() {
+    simdata.xp += 1;
+    $('.home').addClass('dn').removeClass('db');
+    $('.store').addClass('db').removeClass('dn');
+    $('.gifts').addClass('dn').removeClass('db');
+  });
+
+  $('#gifts').off().on('click',function() {
+    simdata.xp += 1;
+    $('.home').addClass('dn').removeClass('db');
+    $('.store').addClass('dn').removeClass('db');
+    $('.gifts').addClass('db').removeClass('dn');
+  });
+
+  $('#buybed').off().on('click',function() {
+    var btn = $(this);
+    simdata.money -= 50;
+    btn.prop('disabled', true);
+    $('#home').append('<div class="bed"></div>');
+  });
+
+});
 
 function update() {
-  document.getElementById('currentmoney').innerHTML = money;
+  simdata.money;
+  updateDisp();
 }
-var money = 0;
+function updateDisp(){
+  $('#money').text(simdata.money);
+  $('#xp').text(simdata.xp);
+}
+setInterval(function(){ update(); }, 1000);
 
-function timer() {
-  money = money;
-  update()
+function saveGame(){
+  Cookies.set("simdata",simdata);
+  eventLog('Progress saved!');
 }
-setInterval(timer, 1000)
+setInterval(function(){ saveGame(); }, 60000);
 
-function work() {
-  money = money + 1
-  update()
+function loadGame(){
+  var simcookie = Cookies.getJSON("simdata");
+  if(simcookie){
+    simdata = simcookie;
+  }
 }
 
-function save() {
-  localStorage.setItem("money", money);
-}
-function load() {
-  money = localStorage.getItem("money");
-  money = parseInt(money);
-  update()
+function eventLog(text){
+  $('#eventLog').prepend("<li>" + text + "</li>");
+  $('#eventLog li:gt(4)').remove();
 }
