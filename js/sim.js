@@ -211,4 +211,3 @@ $(document).ready(function() {
     loadprogress();
   }
   boot();
-});
