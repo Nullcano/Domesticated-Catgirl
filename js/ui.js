@@ -61,4 +61,3 @@ function poor() {
   ];
   $("#confirm").text(confirm[Math.floor(Math.random() * confirm.length)]);
 };
-});
