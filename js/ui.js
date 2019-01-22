@@ -4,6 +4,7 @@ var dooropen = new Audio('sound/dooropen.wav');
 var doorclose = new Audio('sound/doorclose.wav');
 $("#mute").click(function() {
   $(this).addClass("o-50");
+  nya.muted = true;
   dooropen.muted = true;
   doorclose.muted = true;
 });
