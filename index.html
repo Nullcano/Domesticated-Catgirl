@@ -1,64 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Domesticated Catgirl</title>
-    <meta name="description" content="Domesticated Catgirl">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="author" content="Shimeri">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
-    <link href="css/tachyons.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-  </head>
-  <body class="w-100 bg-near-black near-white ttu">
-    <main class="gamewrapper">
-      <header class="pa2 w-100 bg-black flex justify-between">
-        <div>
-          <span class="" contenteditable="true">User</span><span class="">'s Catgirl</span>
-        </div>
-        <span id="cal" class=""></span>
-      </header>
-      <section class="flex">
-        <article class="home db">
-          <div id="window" class="window"></div>
-          <div id="clock" class="clock"></div>
-          <div class="catgirl"></div>
-          <div class="darkshade"></div>
-          <div class="lightshade"></div>
-        </article>
-        <article class="store dn">
-          <h1 class="ma2">Grocery store</h1>
-        </article>
-        <article class="gifts dn">
-          <h1 class="ma2">Gift shop</h1>
-          <button id="buybed" class="w4 tc ma2 pa2 pointer ba bw1">
-            <span class="db">Bed [$50]</span>
-            <img class="db w3 center" src="img/bed.png">
-          </button>
-        </article>
-        <aside class="actions">
-          <ul class="ma0 pa0 list tc">
-            <button id="home" class="db w-100 ma2 pv2 pointer ttu">Home</button>
-            <button id="work" class="db w-100 ma2 pv2 pointer ttu">Work</button>
-            <button id="store" class="db w-100 ma2 pv2 pointer ttu">Store</button>
-            <button id="gifts" class="db w-100 ma2 pv2 pointer ttu">Gifts</button>
-          </ul>
-        </aside>
-      </section>
-      <footer class="pa2 w-100 bg-black">
-        <ul class="ma0 pa0 list flex">
-          <li class="mr3">EXP: <span id="xp">0</span></li>
-          <li class="mr3">$<span id="money">0</span></li>
-          <li class="mr3"><span id="greeting"></span></li>
-        </ul>
-      </footer>
-      <ul id="eventLog" class="list ma0 pa2 w-100 bg-black">
-
-      </ul>
-    </main>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/js.cookie.min.js"></script>
-    <script src="js/script.js"></script>
-  </body>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Shi</title>
+  <link href="img/favicon.ico" rel="shortcut icon">
+  <link href="https://fonts.googleapis.com/css?family=Oxygen|Righteous" rel="stylesheet">
+  <link href="css/tachyons.min.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body class="near-white bg-navy c-def" oncontextmenu="return true;">
+  <div class="stars"></div>
+  <nav class="relative w-100 flex items-center bg-dcgs">
+    <img class="pa2 h3" src="img/logo.gif">
+    <span id="version" class="absolute f7" style="margin-top:6.5em;margin-left:2.5em;z-index:99"></span>
+    <span id="mastername" class="pa3">
+      <input id="selectyourname" class="input-reset ma0 white bg-transparent bn" maxlength="16" placeholder="Enter Your Name" type="text">
+      <button id="masternameok" class="ma0 white bg-transparent bn c-hand">OK</button>
+    </span>
+    <div class="ml4">
+      Level <span id="level">1</span>
+    </div>
+    <div class="ml2">
+      (XP: <span id="totalxp">0</span>)
+    </div>
+    <div class="ml4">
+      Money: <span id="money">0</span>
+    </div>
+    <div class="ml2">
+      (<span id="moneysec">0</span>/sec)
+    </div>
+    <div class="ml4">
+      <span id="save" class="c-hand">Save</span>
+    </div>
+    <div class="ml4">
+      <span id="mute" class="c-hand">Mute</span>
+    </div>
+  </nav>
+	<progress id="experience" class="relative w-100 h1"></progress>
+  <span id="catgirlname" class="fixed title pa3">
+    <input id="selecthername" class="input-reset ma0 white ttu bg-transparent bn" maxlength="16" placeholder="Enter Catgirl Name" type="text">
+    <button id="catgirlnameok" class="ma0 white bg-transparent bn c-hand">OK</button>
+  </span>
+  <main class="simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
+    <aside class="room br bw3 b--near-black">
+      <div id="floor"></div>
+      <div id="wardrobe" class="c-hand"></div>
+      <div id="bed-purple" class="bed dn"></div>
+      <div id="catgirl">
+        <div id="hair-white" class="hair dn"></div>
+        <div id="shorts-denim" class="shorts dn"></div>
+        <div id="tanktop-black" class="shirt dn"></div>
+        <div id="shirt-mars" class="shirt dn"></div>
+        <div id="shirt-tesla" class="shirt dn"></div>
+        <div id="greet" class="dialog dn"></div>
+        <div id="firstwords" class="dialog dn"></div>
+        <div id="emote" class="dialog dn"></div>
+      </div>
+      <div id="drone-bat" class="dn drone"></div>
+    </aside>
+    <section class="hallway">
+      <div id="floor"></div>
+      <div id="door" class="c-hand"></div>
+    </section>
+    <aside class="office bl bw3 b--near-black">
+      <div id="floor"></div>
+      <div class="desk"></div>
+      <div id="work" class="c-hand laptop"></div>
+    </aside>
+  </main>
+  <div class="openwardrobe popup fixed pa3 bg-near-black ba bw1 dn">
+    <span class="title mb2 tc">Inventory</span>
+    <div class="inventory flex flex-wrap">
+      <div id="bed-purple" class="dn item ma1" data-type="decoration">
+        <span id="tt" class="dn">
+          <span class="namebedpurple title pb2"></span>
+          <span class="descbedpurple db pv2 bt bw1 b--dcgs"></span>
+        </span>
+      </div>
+      <div id="drone-bat" class="dn item ma1" data-type="decoration">
+        <span id="tt" class="dn">
+          <span class="namedronebat title pb2"></span>
+          <span class="descdronebat db pv2 bt bw1 b--dcgs"></span>
+        </span>
+      </div>
+      <div id="hair-white" class="dn item ma1" data-type="hair">
+        <span id="tt" class="dn">
+          <span class="namehairwhite title pb2"></span>
+          <span class="deschairwhite db pv2 bt bw1 b--dcgs"></span>
+        </span>
+      </div>
+    </div>
+    <div id="closewardrobe" class="c-hand w4 center mt3 pt2 pb1 f3 tc ttu ba">
+      <span>Close</span>
+    </div>
+  </div>
+  <div class="megamenu popup fixed pa3 bg-near-black ba bw1 dn">
+    <span class="title mb2 tc">Where do you want to go?</span>
+    <div id="gotoupgradestore" class="c-hand grow ma2 pa2 ba">
+      <span class="title mb2">Upgrade Store</span>
+      <span>Buy work supplies to help you earn money faster.</span>
+    </div>
+    <div id="gotoshoppingmall" class="c-hand grow ma2 pa2 ba">
+      <span class="title mb2">Shopping Mall</span>
+      <span>Buy clothes and furniture for your catgirl.</span>
+    </div>
+    <div id="gotolootcrateshop" class="c-hand grow ma2 pa2 ba">
+      <span class="title mb2">Loot Crate Shop</span>
+      <span>Buy loot crates to get exclusive items.</span>
+    </div>
+    <div id="closemegamenu" class="c-hand ma2 grow pa2 ba">
+      <span class="title mb2">Home</span>
+      <span>I don't feel like going outside.</span>
+    </div>
+  </div>
+  <div class="upgradestore popup fixed pa3 bg-near-black ba bw1 dn">
+    <span class="title mb2 tc">Upgrade Store</span>
+    <div id="buyfasterlaptops" class="upg c-hand grow ma2 ba">
+      <small class="db pa1 tc ttu">Increase click power</small>
+      <span class="title pt3 tc">Faster Laptops</span>
+      <div class="pa2 flex flex-row justify-between">
+        <span>Cost: <span id="costfasterlaptops">0</span></span>
+        <span>Owned: <span id="amountfasterlaptops">0</span></span>
+      </div>
+    </div>
+    <div id="buycatcoinminer" class="upg c-hand grow ma2 ba">
+      <small class="db pa1 tc ttu">Increase idle power</small>
+      <span class="title pt3 tc">CatCoin Miner</span>
+      <div class="pa2 flex flex-row justify-between">
+        <span>Cost: <span id="costcatcoinminer">0</span></span>
+        <span>Owned: <span id="amountcatcoinminer">0</span></span>
+      </div>
+    </div>
+    <div id="exitupgradestore" class="c-hand mt3 tc">
+      <span class="pt2 pb1 ph3 f3 ttu ba">Exit</h2>
+    </div>
+  </div>
+  <div class="shoppingmall popup fixed pa3 bg-near-black tc ba bw1 dn">
+    <span class="title tc">Shopping Mall</span>
+    <ul class="pa0 list menu flex flex-row">
+      <li id="filter" class="active c-hand ph2" data-type="all">All</li>
+      <li id="filter" class="c-hand ph2" data-type="head">Head</li>
+      <li id="filter" class="c-hand ph2" data-type="tops">Tops</li>
+      <li id="filter" class="c-hand ph2" data-type="bottoms">Bottoms</li>
+      <li id="filter" class="c-hand ph2" data-type="decoration">Decoration</li>
+    </ul>
+    <div class="shop flex flex-wrap">
+      <div id="bed-purple" class="item ma1" data-type="decoration">
+        <span id="tt" class="dn">
+          <span class="namebedpurple title pb2"></span>
+          <span class="db pb2">Price: <span class="costbedpurple"></span></span>
+          <span class="descbedpurple db pv2 bt bw1 b--dcgs"></span>
+        </span>
+      </div>
+      <div id="drone-bat" class="item ma1" data-type="decoration">
+        <span id="tt" class="dn">
+          <span class="namedronebat title pb2"></span>
+          <span class="db pb2">Price: <span class="costdronebat"></span></span>
+          <span class="descdronebat db pv2 bt bw1 b--dcgs"></span>
+        </span>
+      </div>
+      <div id="hair-white" class="item ma1" data-type="hair">
+        <span id="tt" class="dn">
+          <span class="namehairwhite title pb2"></span>
+          <span class="db pb2">Price: <span class="costhairwhite"></span></span>
+          <span class="deschairwhite db pv2 bt bw1 b--dcgs"></span>
+        </span>
+      </div>
+    </div>
+    <div id="exitshoppingmall" class="c-hand w4 center mt3 pt2 pb1 f3 ttu ba">
+      <span>Exit</span>
+    </div>
+  </div>
+  <div class="lootcrateshop popup fixed pa3 bg-near-black tc ba bw1 dn">
+    <span class="title tc">Loot Crate Shop</span>
+    <span>(Coming soon)</span>
+    <div id="exitlootcrateshop" class="c-hand w4 center mt3 pt2 pb1 f3 ttu ba">
+      <span>Exit</span>
+    </div>
+  </div>
+  <div class="notifypoor notify fixed pa3 bg-near-black tc ba bw1 dn">
+    <span class="title tc">You can't afford this...</span>
+    <div id="closepoor" class="c-hand w4 center mt3 pt2 pb1 f3 ttu ba">
+      <span id="confirm"></span>
+    </div>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/shi.js"></script>
+  <script src="js/dragscroll.js"></script>
+</body>
 </html>

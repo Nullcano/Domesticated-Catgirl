@@ -1,67 +1,272 @@
 @font-face {
-  font-family: rainyhearts;
-  src: url(../font/rainyhearts.ttf);
+  font-family:Beeb;
+  src:url(../font/beeb.ttf);
 }
+@font-face {
+  font-family:RPGTown;
+  src:url(../font/rpgtown.ttf);
+}
+
 body {
-  font-family: rainyhearts;
+  min-height: 100vh;
+  font-family: RPGTown;
   font-size: 16px;
-  background: url(../img/bg.png) center center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #c31432;
+  background: -webkit-linear-gradient(to bottom, #240b36, #c31432);
+  background: linear-gradient(to bottom, #240b36, #c31432);
+  overflow: hidden;
 }
-button {
-  background: transparent;
-  border: 2px solid rgba(255,255,255,1);
-  color: rgba(255,255,255,1);
+::-moz-selection{color:inherit;background:transparent}
+::selection{color:inherit;background:transparent}
+*::-webkit-input-placeholder{color:white}
+*:-moz-placeholder{color:white}
+*::-moz-placeholder{color:white}
+*:-ms-input-placeholder{color:white}
+
+.c-def{cursor: url(../img/cursor-default.gif), auto}
+.c-hand{cursor: url(../img/cursor-hand.gif), auto}
+.c-drag{cursor: url(../img/cursor-drag.gif), auto}
+
+.title, ul.menu li.active {
+  color: transparent;
+  background: #f84c70 url(../img/progval.gif);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  display: block;
+  font-family: Beeb;
+  text-transform: uppercase;
 }
-button:disabled {
-  background: transparent;
-  border: 2px solid rgba(255,255,255,.25);
-  color: rgba(255,255,255,.25);
-}
-.gamewrapper {
-  position: absolute;
+
+.stars {
+  position: fixed;
+  width: 300vw;
+  height: 300vh;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 768px;
-  height: 326px;
-  background: rgba(0,0,0,.5);
+  margin-top: -150vh;
+  margin-left: -150vw;
+  -webkit-animation: spin 240s linear infinite;
+  animation: spin 240s linear infinite;
+  background-size: 240px;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8yIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI0MCAyNDAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0MCAyNDAiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxyZWN0IHg9IjEwNiIgeT0iOTAiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiLz48cmVjdCB4PSI3NCIgeT0iNjMiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIyMyIgeT0iNjYiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSI1MCIgeT0iMTEwIiBmaWxsPSIjRkZGRkZGIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iNjMiIHk9IjEyOCIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjQ1IiB5PSIxNDkiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSI5MiIgeT0iMTUxIiBmaWxsPSIjRkZGRkZGIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iNTgiIHk9IjgiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIxNDciIHk9IjMzIiBmaWxsPSIjRkZGRkZGIiB3aWR0aD0iMiIgaGVpZ2h0PSIyIi8+PHJlY3QgeD0iOTEiIHk9IjQzIiBmaWxsPSIjRkZGRkZGIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMTY5IiB5PSIyOSIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjE4MiIgeT0iMTkiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIxNjEiIHk9IjU5IiBmaWxsPSIjRkZGRkZGIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMTM4IiB5PSI5NSIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjE5OSIgeT0iNzEiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIzIiBoZWlnaHQ9IjMiLz48cmVjdCB4PSIyMTMiIHk9IjE1MyIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjIiIGhlaWdodD0iMiIvPjxyZWN0IHg9IjEyOCIgeT0iMTYzIiBmaWxsPSIjRkZGRkZGIiB3aWR0aD0iMSIgaGVpZ2h0PSIxIi8+PHJlY3QgeD0iMjA1IiB5PSIxNzQiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIxNTIiIHk9IjIwMCIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjxyZWN0IHg9IjUyIiB5PSIyMTEiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiLz48cmVjdCB5PSIxOTEiIGZpbGw9IiNGRkZGRkYiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiLz48cmVjdCB4PSIxMTAiIHk9IjE4NCIgZmlsbD0iI0ZGRkZGRiIgd2lkdGg9IjEiIGhlaWdodD0iMSIvPjwvc3ZnPg==);
 }
-.home, .store, .gifts {
-  width: 512px;
-  height: 256px;
+@-webkit-keyframes spin { from {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+} to {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+} }
+@keyframes spin { from {
+  -webkit-transform: rotate(0deg);
+  transform: rotate(0deg);
+} to {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg);
+} }
+
+.bg-dcgs {
+  background-color: #540d6e;
 }
-.home {
-  background: url(../img/default-wall.png) top left;
+.b--dcgs {
+  border-color: #540d6e;
 }
-.window {
-  position: absolute;
-  margin-top: 32px;
-  margin-left: 32px;
+progress[value] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 100%;
+  height: 16px;
+  background: url(../img/progmax.gif) repeat-x bottom left;
+}
+progress[value]::-moz-progress-bar {
+  height: 16px;
+  background: url(../img/progval.gif) repeat-x bottom left;
+}
+small {
+  font-size: 16px;
+  background: #540d6e url(../img/progmax.gif) repeat-x bottom left;
+}
+.item {
   width: 128px;
   height: 128px;
-  border: 4px solid #000;
+  border: 4px double #540d6e;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
-.clock {
+
+.item:hover #tt {
   position: absolute;
-  margin-top: 64px;
-  margin-left: 356px;
-  padding: 0px 4px;
-  background: #000;
-  border: 4px solid #444;
+  margin-top: -4px;
+  margin-left: 128px;
+  padding: 8px;
+  display: block;
+  width: 256px;
+  height: 120px;
+  border: 4px double #540d6e;
+  text-align: left;
+  background: #111;
+}
+.simulator {
+  height: 512px;
+  overflow: hidden;
+}
+.room {
+  min-width: 1024px;
+  height: 100%;
+  background: url(../img/wall-bricks-light.gif) bottom center;
+}
+.room #floor {
+  position: absolute;
+  bottom: 0;
+  width: 1016px;
+  height: 42px;
+  background: #222;
+}
+.hallway {
+  min-width: 384px;
+  height: 100%;
+  background: url(../img/wall-hallway.gif) bottom center repeat-y;
+}
+.hallway #floor {
+  position: absolute;
+  bottom: 0;
+  width: 384px;
+  height: 86px;
+  background: #222;
+}
+.office {
+  min-width: 768px;
+  height: 100%;
+  background: url(../img/wall-stripes-dark.gif) bottom center;
+}
+.office #floor {
+  position: absolute;
+  bottom: 0;
+  width: 760px;
+  height: 42px;
+  background: #222;
+}
+#catgirl {
+  position: absolute;
+  bottom: 0;
+  margin-left: 256px;
+  width: 150px;
+  height: 388px;
+  background: url(../img/girl-base.gif);
+}
+.dialog {
+  position: absolute;
+  max-width: 256px;
+  bottom: 400px;
+  margin-left: 20px;
+  padding: 8px;
+  color: #000;
+  background: #fff;
+  -webkit-box-shadow: 4px 4px 0px 0px #000;
+  -moz-box-shadow: 4px 4px 0px 0px #000;
+  box-shadow: 4px 4px 0px 0px #000;
 }
 .bed {
   position: absolute;
-  margin-top: 172px;
+  bottom: 22px;
   margin-left: 0px;
-  width: 164px;
-  height: 84px;
-  background: url(../img/bed.png);
+  width: 388px;
+  height: 152px;
 }
-.catgirl {
+#bed-purple{background-image:url(../img/bed-purple.gif)}
+.drone {
   position: absolute;
-  margin-top: 92px;
-  margin-left: 256px;
-  width: 84px;
-  height: 164px;
-  background: url(../img/girl-base.png);
+  bottom: 22px;
+  margin-left: 0px;
+  width: 388px;
+  height: 152px;
+}
+#drone-bat{background-image:url(../img/drone-bat.gif)}
+
+.hair {
+  position: absolute;
+  bottom: 286px;
+  margin-left: 10px;
+  width: 102px;
+  height: 92px;
+}
+#hair-white{background-image:url(../img/hair-white.gif)}
+
+.shirt {
+  position: absolute;
+  bottom: 186px;
+  margin-left: 6px;
+  width: 110px;
+  height: 114px;
+}
+#shirt-mars{background-image:url(../img/shirt-mars.gif)}
+#shirt-tesla{background-image:url(../img/shirt-tesla.gif)}
+
+.shorts {
+  position: absolute;
+  bottom: 118px;
+  margin-left: 22px;
+  width: 78px;
+  height: 76px;
+}
+#shorts-denim{background-image:url(../img/shorts-denim.gif)}
+
+#wardrobe {
+  position: absolute;
+  bottom: 22px;
+  margin-left: 740px;
+  width: 196px;
+  height: 362px;
+  background: url(../img/wardrobe-default.gif);
+}
+#door {
+  position: absolute;
+  bottom: 86px;
+  margin-left: 128px;
+  width: 128px;
+  height: 256px;
+  background: url(../img/door-default.gif);
+}
+.desk {
+  position: absolute;
+  bottom: 22px;
+  margin-left: 128px;
+  width: 320px;
+  height: 160px;
+  background: url(../img/desk.gif);
+}
+.laptop {
+  position: absolute;
+  bottom: 180px;
+  margin-left: 190px;
+  width: 176px;
+  height: 106px;
+  background: url(../img/laptop.gif);
+}
+.upg {
+  border-color: #540d6e;
+}
+.popup {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 512px;
+  height: 512px;
+  border-color: #540d6e;
+}
+.notify {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 512px;
+  height: 128px;
+  border-color: #540d6e;
 }
