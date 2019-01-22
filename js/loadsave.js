@@ -56,3 +56,8 @@ function loadprogress() {
     update();
   }
 };
+
+function boot() {
+  loadprogress();
+}
+boot();

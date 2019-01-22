@@ -207,9 +207,4 @@ $(document).ready(function() {
     }
   };
 
-  function boot() {
-    loadprogress();
-  }
-  boot();
-
 });
