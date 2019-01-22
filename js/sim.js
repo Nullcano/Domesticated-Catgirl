@@ -86,6 +86,31 @@ $(document).ready(function() {
     },
   }
   //achievements: { saymyname, cat babtism }
+
+  function update() {
+    $("#version").text(version);
+    $("#money").text(stats.money.toFixed(2));
+    $("#moneysec").text(stats.moneysec.toFixed(2));
+    $("#totalxp").text(stats.xp);
+    $("#level").text(stats.lvl);
+    $("#stats_exp_to_next_level").html(stats.lvlxp + stats.totalxp - Math.floor(stats.xp));
+    $("#experience").attr("value", stats.xp - stats.totalxp);
+    $("#experience").attr("max", stats.lvlxp);
+    $("#costfasterlaptops").text(upgrades.fasterlaptops.cost.toFixed(2));
+    $("#amountfasterlaptops").text(upgrades.fasterlaptops.amount);
+    $("#costcatcoinminer").text(upgrades.catcoinminer.cost.toFixed(2));
+    $("#amountcatcoinminer").text(upgrades.catcoinminer.amount);
+    $(".namebedpurple").each(function(){$(this).text(items.bedpurple.name)});
+    $(".costbedpurple").each(function(){$(this).text(items.bedpurple.cost)});
+    $(".descbedpurple").each(function(){$(this).text(items.bedpurple.desc)});
+    $(".namedronebat").each(function(){$(this).text(items.dronebat.name)});
+    $(".costdronebat").each(function(){$(this).text(items.dronebat.cost)});
+    $(".descdronebat").each(function(){$(this).text(items.dronebat.desc)});
+    $(".namehairwhite").each(function(){$(this).text(items.hairwhite.name)});
+    $(".costhairwhite").each(function(){$(this).text(items.hairwhite.cost)});
+    $(".deschairwhite").each(function(){$(this).text(items.hairwhite.desc)});
+  };
+
   $("#masternameok").click(function() {
     var mastername = document.getElementById("selectyourname").value;
     localStorage.setItem("yourname", mastername);
@@ -96,6 +121,7 @@ $(document).ready(function() {
       $("#greet").hide();
     }, 3000);
   });
+
   $("#catgirlnameok").click(function() {
     var catgirlname = document.getElementById("selecthername").value;
     localStorage.setItem("hername", catgirlname);
@@ -106,6 +132,7 @@ $(document).ready(function() {
       $("#firstwords").hide();
     }, 3000);
   });
+
   $("#catgirl").click(function() {
     var emote = ["(^ ω ^)", "(´ ∀ `)", "(≧ ◡ ≦)", "(⌒ ω ⌒)", "(¯ ︶ ¯)"];
     $("#emote").show().text(emote[Math.floor(Math.random() * emote.length)]);
@@ -114,11 +141,13 @@ $(document).ready(function() {
     }, 2000);
     nya.play();
   });
+
   $("#work").click(function() {
     stats.money = stats.money + stats.moneyclick;
     stats.gain_xp(3);
     update();
   });
+
   //Buy upgrades
   $("#buyfasterlaptops").click(function() {
     if (stats.money >= upgrades.fasterlaptops.cost) {
@@ -133,6 +162,7 @@ $(document).ready(function() {
       $(".notifypoor").show();
     }
   });
+
   $("#buycatcoinminer").click(function() {
     if (stats.money >= upgrades.catcoinminer.cost) {
       stats.money = stats.money - upgrades.catcoinminer.cost;
@@ -152,6 +182,7 @@ $(document).ready(function() {
     update();
   };
   setInterval(timer, 1000);
+
   //Shop & Inventory
   $(".shop #bed-purple").click(function() {
     if (stats.money >= items.bedpurple.cost) {
@@ -165,6 +196,7 @@ $(document).ready(function() {
       poor();
     }
   });
+
   $(".shop #drone-bat").click(function() {
     if (stats.money >= items.dronebat.cost) {
       stats.money = stats.money - items.dronebat.cost;
