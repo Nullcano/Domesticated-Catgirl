@@ -51,14 +51,3 @@ $("#closepoor").click(function() {
   $(".notifypoor").hide();
 });
 
-//Randomize things
-function poor() {
-  var confirm = [
-    "Fuck...",
-    "Shit...",
-    "Damn...",
-    "Fine...",
-    "REEEEE!"
-  ];
-  $("#confirm").text(confirm[Math.floor(Math.random() * confirm.length)]);
-};
