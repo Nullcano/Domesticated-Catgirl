@@ -258,6 +258,14 @@ small {
   width: 58px;
   height: 66px;
 }
+#achievements {
+  position: absolute;
+  bottom: 20px;
+  margin-left: 512px;
+  width: 88px;
+  height: 88px;
+  background: url(../img/trophybox.gif);
+}
 #wardrobe {
   position: absolute;
   bottom: 22px;

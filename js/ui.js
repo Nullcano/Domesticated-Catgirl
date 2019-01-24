@@ -1,25 +1,29 @@
 //Sounds
+var achievement = new Audio('sound/achievement.wav')
+var click = new Audio('sound/click.wav');
+var close = new Audio('sound/close.wav');
+var open = new Audio('sound/open.wav');
 var nya = new Audio('sound/nya.wav');
-var dooropen = new Audio('sound/dooropen.wav');
-var doorclose = new Audio('sound/doorclose.wav');
 $("#mute").click(function() {
   $(this).addClass("o-50");
+  achievement.muted = true;
+  click.muted = true;
+  close.muted = true;
+  open.muted = true;
   nya.muted = true;
-  dooropen.muted = true;
-  doorclose.muted = true;
 });
 
 //Popups
 $("#door").click(function() {
   $(".megamenu").show();
-  dooropen.play();
-});
-$("#closemegamenu").click(function() {
-  $(".megamenu").hide();
-  doorclose.play();
+  open.play();
 });
 $("#wardrobe").click(function() {
   $(".openwardrobe").show();
+  open.play();
+});
+$("#achievements").click(function() {
+  $(".openachievements").show();
 });
 $("#gotoupgradestore").click(function() {
   $(".upgradestore").show();
@@ -33,8 +37,16 @@ $("#gotolootcrateshop").click(function() {
   $(".lootcrateshop").show();
   $(".megamenu").hide();
 });
+$("#closemegamenu").click(function() {
+  $(".megamenu").hide();
+  close.play();
+});
 $("#closewardrobe").click(function() {
   $(".openwardrobe").hide();
+  close.play();
+});
+$("#closeachievements").click(function() {
+  $(".openachievements").hide();
 });
 $("#exitupgradestore").click(function() {
   $(".upgradestore").hide();

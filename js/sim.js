@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var version="Alpha 4.2.5";stats={money:0,moneyclick:1,moneysec:0,xp:0,lvl:1,lvlxp:100,totalxp:0,lvlcap:30,level_up:function(){this.lvl+=1,this.totalxp+=this.lvlxp,this.lvlxp=this.lvl*this.lvl*100,update()},gain_xp:function(l){var t;for(this.xp+=l,this.lvl>=this.lvlcap&&this.xp>this.totalxp&&(this.xp=this.totalxp),t=[];this.xp>=this.totalxp+this.lvlxp&&this.lvl<this.lvlcap;)t.push(this.level_up());return t}};
+  var version="Alpha 4.3.0";stats={money:0,moneyclick:1,moneysec:0,xp:0,lvl:1,lvlxp:100,totalxp:0,lvlcap:42,level_up:function(){this.lvl+=1,this.totalxp+=this.lvlxp,this.lvlxp=this.lvl*this.lvl*100,update()},gain_xp:function(l){var t;for(this.xp+=l,this.lvl>=this.lvlcap&&this.xp>this.totalxp&&(this.xp=this.totalxp),t=[];this.xp>=this.totalxp+this.lvlxp&&this.lvl<this.lvlcap;)t.push(this.level_up());return t}};
   upgrades = {
     fasterlaptops: {
       cost: 8,
@@ -102,8 +102,23 @@ $(document).ready(function() {
       name: "Top | Pink",
       desc: "Pink top with a lightning bolt print.",
     },
-  }
-  //achievements: { saymyname, cat babtism }
+  };
+  achievements = {
+    saymyname: {
+      status: 0,
+      xp: 50,
+      img: "img/saymyname.gif",
+      name: "Say My Name",
+      desc: "You told her your name.",
+    },
+    catbabtism: {
+      status: 0,
+      xp: 50,
+      img: "img/catbabtism.gif",
+      name: "Cat Babtism",
+      desc: "You named your catgirl.",
+    },
+  };
 
   function update() {
     $("#version").text(version);
@@ -159,27 +174,31 @@ $(document).ready(function() {
   $(".nametoppink").each(function(){$(this).text(items.toppink.name)});
   $(".costtoppink").each(function(){$(this).text(items.toppink.cost)});
   $(".desctoppink").each(function(){$(this).text(items.toppink.desc)});
+  $(".imgsaymyname").attr("src",achievements.saymyname.img);
+  $(".namesaymyname").each(function(){$(this).text(achievements.saymyname.name)});
+  $(".descsaymyname").each(function(){$(this).text(achievements.saymyname.desc)});
+  $(".xpsaymyname").each(function(){$(this).text(achievements.saymyname.xp)});
+  $(".imgcatbabtism").attr("src",achievements.catbabtism.img);
+  $(".namecatbabtism").each(function(){$(this).text(achievements.catbabtism.name)});
+  $(".desccatbabtism").each(function(){$(this).text(achievements.catbabtism.desc)});
+  $(".xpcatbabtism").each(function(){$(this).text(achievements.catbabtism.xp)});
 
   $("#masternameok").click(function() {
     var mastername = document.getElementById("selectyourname").value;
-    localStorage.setItem("yourname", mastername);
     document.getElementById("mastername").innerHTML = document.getElementById("selectyourname").value;
     $("#greet").text("Nice to meet you, " + mastername + "!")
-    $("#greet").show();
-    setTimeout(function() {
-      $("#greet").hide();
-    }, 3000);
+    $("#greet").hide(0).delay(5000).show(0).delay(3000).hide(0);
+    saymyname();
+    drawitems();
   });
 
   $("#catgirlnameok").click(function() {
     var catgirlname = document.getElementById("selecthername").value;
-    localStorage.setItem("hername", catgirlname);
     document.getElementById("catgirlname").innerHTML = document.getElementById("selecthername").value;
     $("#firstwords").text(catgirlname + "? Nice...")
-    $("#firstwords").show();
-    setTimeout(function() {
-      $("#firstwords").hide();
-    }, 3000);
+    $("#firstwords").hide(0).delay(5000).show(0).delay(3000).hide(0);
+    catbabtism();
+    drawitems();
   });
 
   $("#catgirl").click(function() {
@@ -194,6 +213,7 @@ $(document).ready(function() {
   $("#work").click(function() {
     stats.money = stats.money + stats.moneyclick;
     stats.gain_xp(3);
+    click.play();
     update();
   });
 
@@ -233,6 +253,27 @@ $(document).ready(function() {
     update();
   };
   setInterval(timer, 1000);
+
+  function saymyname() {
+    achievements.saymyname.status=1;
+    stats.gain_xp(achievements.saymyname.xp);
+    $(".popsaymyname").show();
+    achievement.play();
+    drawitems();
+    setTimeout(function() {
+      $(".popsaymyname").hide();
+    }, 5000);
+  }
+  function catbabtism() {
+    achievements.catbabtism.status=1;
+    stats.gain_xp(achievements.catbabtism.xp);
+    $(".popcatbabtism").show();
+    achievement.play();
+    drawitems();
+    setTimeout(function() {
+      $(".popcatbabtism").hide();
+    }, 5000);
+  }
 
   //Shop & Inventory
   $(".shop").on("click","#bed-purple",function(){stats.money>=items.bedpurple.cost?(stats.money=stats.money-items.bedpurple.cost,items.bedpurple.owned=1,update(),drawitems()):($(".shoppingmall").hide(),$(".notifypoor").show(),poor())});
@@ -317,11 +358,17 @@ $(document).ready(function() {
     if (items.toppink.owned===0) { $(".shop #top-pink").show(); $(".inventory #top-pink").hide(); $(".room #top-pink").hide(); }
     if (items.toppink.owned===1) { $(".shop #top-pink").hide(); $(".inventory #top-pink").show(); $(".room #top-pink").hide(); }
     if (items.toppink.owned===2) { $(".shop #top-pink").hide(); $(".inventory #top-pink").hide(); $(".room #top-pink").show(); }
+    if (achievements.saymyname.status===0) { $(".achievements .saymyname").hide(); }
+    if (achievements.saymyname.status===1) { $(".achievements .saymyname").show(); }
+    if (achievements.catbabtism.status===0) { $(".achievements .catbabtism").hide(); }
+    if (achievements.catbabtism.status===1) { $(".achievements .catbabtism").show(); }
   }
 
   //Lock & Load
   setInterval(function(){
     var save = {
+      "yourname": mastername,
+      "hername": catgirlname,
       "money": stats.money,
       "moneyclick": stats.moneyclick,
       "moneysec": stats.moneysec,
@@ -347,6 +394,8 @@ $(document).ready(function() {
       "ownedtanktopblack": items.tanktopblack.owned,
       "ownedthighhighsrainbow": items.thighhighsrainbow.owned,
       "ownedtoppink": items.toppink.owned,
+      "statussaymyname": achievements.saymyname.status,
+      "statuscatbabtism": achievements.catbabtism.status,
     };
     localStorage.setItem("save",JSON.stringify(save));
   }, 10000);
@@ -378,8 +427,12 @@ $(document).ready(function() {
       "ownedtanktopblack": items.tanktopblack.owned,
       "ownedthighhighsrainbow": items.thighhighsrainbow.owned,
       "ownedtoppink": items.toppink.owned,
+      "statussaymyname": achievements.saymyname.status,
+      "statuscatbabtism": achievements.catbabtism.status,
     };
     localStorage.setItem("save",JSON.stringify(save));
+    localStorage.setItem("yourname",mastername);
+    localStorage.setItem("hername",catgirlname);
   });
 
   function loadprogress() {
@@ -410,7 +463,25 @@ $(document).ready(function() {
       items.tanktopblack.owned = progress["ownedtanktopblack"];
       items.thighhighsrainbow.owned = progress["ownedthighhighsrainbow"];
       items.toppink.owned = progress["ownedtoppink"];
+      achievements.saymyname.status = progress["statussaymyname"];
+      achievements.catbabtism.status = progress["statuscatbabtism"];
       update();
+    }
+    if (localStorage.getItem("yourname") !== null) {
+      $("#masternameok").text("Fee: 5000").css("color", "red");
+      $("#masternameok").prop("disabled", true);
+      $("#masternameok").click(function() {
+        if (stats.money >= 5000) { $(this).prop("disabled", false).css("color", "white"); stats.money = stats.money - 5000; update(); }
+        else { $(".notifypoor").show(); poor(); }
+      });
+    }
+    if (localStorage.getItem("hername") !== null) {
+      $("#catgirlnameok").text("Fee: 5000").css("color", "red");
+      $("#catgirlnameok").prop("disabled", true);
+      $("#catgirlnameok").click(function() {
+        if (stats.money >= 5000) { $(this).prop("disabled", false).css("color", "white"); stats.money = stats.money - 5000; update(); }
+        else { $(".notifypoor").show(); poor(); }
+      });
     }
   };
 

@@ -45,6 +45,7 @@
   <main class="simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
     <aside class="room br bw3 b--near-black">
       <div id="floor"></div>
+      <div id="achievements" class="c-hand"></div>
       <div id="wardrobe" class="c-hand"></div>
       <div id="bed-purple" class="c-hand bed"></div>
       <div id="catgirl" class="c-hand">
@@ -232,6 +233,30 @@
     <div id="exitlootcrateshop" class="c-hand w4 center mt3 pt2 pb1 f3 ttu ba">
       <span>Exit</span>
     </div>
+  </div>
+  <div class="openachievements popup fixed pa3 bg-near-black ba bw1 dn">
+    <span class="title tc">Achievements</span>
+    <div class="achievements flex flex-column items-center">
+      <div class="saymyname w-100 ma2 pa2 flex bg-black-50">
+        <img class="imgsaymyname w3 h3 mr2" src="">
+        <span><span class="namesaymyname title pb2"></span><span class="descsaymyname db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div class="catbabtism w-100 ma2 pa2 flex bg-black-50">
+        <img class="imgcatbabtism w3 h3 mr2" src="">
+        <span><span class="namecatbabtism title pb2"></span><span class="desccatbabtism db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+    </div>
+    <div id="closeachievements" class="c-hand w4 center mt3 pt2 pb1 f3 tc ttu ba">
+      <span>Close</span>
+    </div>
+  </div>
+  <div class="popsaymyname notify fixed pa2 bg-near-black tc ba bw1 dn">
+    <span class="title mb2">Achievement Unlocked!</span>
+    <span class="flex items-center"><img class="imgsaymyname" src""><span><span class="namesaymyname title mv2"></span><span class="descsaymyname db pv2 bt bw1 b--dcgs"></span></span><span class="ml4 f3"><span class="mb1 db f5">Reward:</span><span class="xpsaymyname"></span> XP</span></span>
+  </div>
+  <div class="popcatbabtism notify fixed pa2 bg-near-black tc ba bw1 dn">
+    <span class="title mb2">Achievement Unlocked!</span>
+    <span class="flex items-center"><img class="imgcatbabtism" src""><span><span class="namecatbabtism title mv2"></span><span class="desccatbabtism db pv2 bt bw1 b--dcgs"></span></span><span class="ml4 f3"><span class="mb1 db f5">Reward:</span><span class="xpcatbabtism"></span> XP</span></span>
   </div>
   <div class="notifypoor notify fixed pa3 bg-near-black tc ba bw1 dn">
     <span class="title tc">You can't afford this...</span>
