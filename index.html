@@ -46,18 +46,24 @@
     <aside class="room br bw3 b--near-black">
       <div id="floor"></div>
       <div id="wardrobe" class="c-hand"></div>
-      <div id="bed-purple" class="bed dn"></div>
-      <div id="catgirl">
-        <div id="hair-white" class="hair dn"></div>
-        <div id="shorts-denim" class="shorts dn"></div>
-        <div id="tanktop-black" class="shirt dn"></div>
-        <div id="shirt-mars" class="shirt dn"></div>
-        <div id="shirt-tesla" class="shirt dn"></div>
+      <div id="bed-purple" class="c-hand bed"></div>
+      <div id="catgirl" class="c-hand">
+        <div id="hair-white" class="hair"></div>
+        <div id="facemask-samurai" class="facemask"></div>
+        <div id="glasses-purpletint" class="glasses"></div>
+        <div id="hat-redcap" class="hat"></div>
+        <div id="thighhighs-rainbow" class="thighhighs"></div>
+        <div id="shorts-denim" class="shorts"></div>
+        <div id="miniskirt-white" class="miniskirt"></div>
+        <div id="tanktop-black" class="tanktop"></div>
+        <div id="top-pink" class="top"></div>
+        <div id="shirt-mars" class="shirt"></div>
+        <div id="shirt-tesla" class="shirt"></div>
         <div id="greet" class="dialog dn"></div>
         <div id="firstwords" class="dialog dn"></div>
         <div id="emote" class="dialog dn"></div>
       </div>
-      <div id="drone-bat" class="dn drone"></div>
+      <div id="drone-bat" class="drone"></div>
     </aside>
     <section class="hallway">
       <div id="floor"></div>
@@ -71,27 +77,56 @@
   </main>
   <div class="openwardrobe popup fixed pa3 bg-near-black ba bw1 dn">
     <span class="title mb2 tc">Inventory</span>
-    <div class="inventory flex flex-wrap">
-      <div id="bed-purple" class="dn item ma1" data-type="decoration">
-        <span id="tt" class="dn">
-          <span class="namebedpurple title pb2"></span>
-          <span class="descbedpurple db pv2 bt bw1 b--dcgs"></span>
-        </span>
+    <ul class="list pa0 menu flex flex-row items-center justify-center">
+      <li class="active c-hand ph2" data-type="all">All</li>
+      <li class="c-hand ph2" data-type="body">Body</li>
+      <li class="c-hand ph2" data-type="head">Head</li>
+      <li class="c-hand ph2" data-type="tops">Tops</li>
+      <li class="c-hand ph2" data-type="bottoms">Bottoms</li>
+      <li class="c-hand ph2" data-type="decoration">Decoration</li>
+    </ul>
+    <div class="inventory flex flex-column items-center">
+      <div id="bed-purple" class="item ma1 dn" data-type="decoration">
+        <span id="tt"><span class="namebedpurple title pb2"></span><span class="descbedpurple db pv2 bt bw1 b--dcgs"></span></span>
       </div>
-      <div id="drone-bat" class="dn item ma1" data-type="decoration">
-        <span id="tt" class="dn">
-          <span class="namedronebat title pb2"></span>
-          <span class="descdronebat db pv2 bt bw1 b--dcgs"></span>
-        </span>
+      <div id="drone-bat" class="item ma1 dn" data-type="decoration">
+        <span id="tt"><span class="namedronebat title pb2"></span><span class="descdronebat db pv2 bt bw1 b--dcgs"></span></span>
       </div>
-      <div id="hair-white" class="dn item ma1" data-type="hair">
-        <span id="tt" class="dn">
-          <span class="namehairwhite title pb2"></span>
-          <span class="deschairwhite db pv2 bt bw1 b--dcgs"></span>
-        </span>
+      <div id="facemask-samurai" class="item ma1 dn" data-type="head">
+        <span id="tt"><span class="namefacemasksamurai title pb2"></span><span class="descfacemasksamurai db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="glasses-purpletint" class="item ma1 dn" data-type="head">
+        <span id="tt"><span class="nameglassespurpletint title pb2"></span><span class="descglassespurpletint db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="hair-white" class="item ma1 dn" data-type="body">
+        <span id="tt"><span class="namehairwhite title pb2"></span><span class="deschairwhite db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="hat-redcap" class="item ma1 dn" data-type="head">
+        <span id="tt"><span class="namehatredcap title pb2"></span><span class="deschatredcap db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="miniskirt-white" class="item ma1 dn" data-type="bottoms">
+        <span id="tt"><span class="nameminiskirtwhite title pb2"></span><span class="descminiskirtwhite db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="shirt-mars" class="item ma1 dn" data-type="tops">
+        <span id="tt"><span class="nameshirtmars title pb2"></span><span class="descshirtmars db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="shirt-tesla" class="item ma1 dn" data-type="tops">
+        <span id="tt"><span class="nameshirttesla title pb2"></span><span class="descshirttesla db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="shorts-denim" class="item ma1 dn" data-type="bottoms">
+        <span id="tt"><span class="nameshortsdenim title pb2"></span><span class="descshortsdenim db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="tanktop-black" class="item ma1 dn" data-type="tops">
+        <span id="tt"><span class="nametanktopblack title pb2"></span><span class="desctanktopblack db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="thighhighs-rainbow" class="item ma1 dn" data-type="bottoms">
+        <span id="tt"><span class="namethighhighsrainbow title pb2"></span><span class="descthighhighsrainbow db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="top-pink" class="item ma1 dn" data-type="tops">
+        <span id="tt"><span class="nametoppink title pb2"></span><span class="desctoppink db pv2 bt bw1 b--dcgs"></span></span>
       </div>
     </div>
-    <div id="closewardrobe" class="c-hand w4 center mt3 pt2 pb1 f3 tc ttu ba">
+    <div id="closewardrobe" class="c-hand w4 center mv3 pt2 pb1 f3 tc ttu ba">
       <span>Close</span>
     </div>
   </div>
@@ -138,37 +173,56 @@
   </div>
   <div class="shoppingmall popup fixed pa3 bg-near-black tc ba bw1 dn">
     <span class="title tc">Shopping Mall</span>
-    <ul class="pa0 list menu flex flex-row">
-      <li id="filter" class="active c-hand ph2" data-type="all">All</li>
-      <li id="filter" class="c-hand ph2" data-type="head">Head</li>
-      <li id="filter" class="c-hand ph2" data-type="tops">Tops</li>
-      <li id="filter" class="c-hand ph2" data-type="bottoms">Bottoms</li>
-      <li id="filter" class="c-hand ph2" data-type="decoration">Decoration</li>
+    <ul class="list pa0 menu flex flex-row items-center justify-center">
+      <li class="active c-hand ph2" data-type="all">All</li>
+      <li class="c-hand ph2" data-type="body">Body</li>
+      <li class="c-hand ph2" data-type="head">Head</li>
+      <li class="c-hand ph2" data-type="tops">Tops</li>
+      <li class="c-hand ph2" data-type="bottoms">Bottoms</li>
+      <li class="c-hand ph2" data-type="decoration">Decoration</li>
     </ul>
-    <div class="shop flex flex-wrap">
+    <div class="list shop flex flex-column items-center">
       <div id="bed-purple" class="item ma1" data-type="decoration">
-        <span id="tt" class="dn">
-          <span class="namebedpurple title pb2"></span>
-          <span class="db pb2">Price: <span class="costbedpurple"></span></span>
-          <span class="descbedpurple db pv2 bt bw1 b--dcgs"></span>
-        </span>
+        <span id="tt"><span class="namebedpurple title pb2"></span><span class="db pb2">Price: <span class="costbedpurple"></span></span><span class="descbedpurple db pv2 bt bw1 b--dcgs"></span></span>
       </div>
       <div id="drone-bat" class="item ma1" data-type="decoration">
-        <span id="tt" class="dn">
-          <span class="namedronebat title pb2"></span>
-          <span class="db pb2">Price: <span class="costdronebat"></span></span>
-          <span class="descdronebat db pv2 bt bw1 b--dcgs"></span>
-        </span>
+        <span id="tt"><span class="namedronebat title pb2"></span><span class="db pb2">Price: <span class="costdronebat"></span></span><span class="descdronebat db pv2 bt bw1 b--dcgs"></span></span>
       </div>
-      <div id="hair-white" class="item ma1" data-type="hair">
-        <span id="tt" class="dn">
-          <span class="namehairwhite title pb2"></span>
-          <span class="db pb2">Price: <span class="costhairwhite"></span></span>
-          <span class="deschairwhite db pv2 bt bw1 b--dcgs"></span>
-        </span>
+      <div id="facemask-samurai" class="item ma1" data-type="head">
+        <span id="tt"><span class="namefacemasksamurai title pb2"></span><span class="db pb2">Price: <span class="costfacemasksamurai"></span></span><span class="descfacemasksamurai db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="glasses-purpletint" class="item ma1" data-type="head">
+        <span id="tt"><span class="nameglassespurpletint title pb2"></span><span class="db pb2">Price: <span class="costglassespurpletint"></span></span><span class="descglassespurpletint db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="hair-white" class="item ma1" data-type="body">
+        <span id="tt"><span class="namehairwhite title pb2"></span><span class="db pb2">Price: <span class="costhairwhite"></span></span><span class="deschairwhite db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="hat-redcap" class="item ma1" data-type="head">
+        <span id="tt"><span class="namehatredcap title pb2"></span><span class="db pb2">Price: <span class="costhatredcap"></span></span><span class="deschatredcap db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="miniskirt-white" class="item ma1" data-type="bottoms">
+        <span id="tt"><span class="nameminiskirtwhite title pb2"></span><span class="db pb2">Price: <span class="costminiskirtwhite"></span></span><span class="descminiskirtwhite db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="shirt-mars" class="item ma1" data-type="tops">
+        <span id="tt"><span class="nameshirtmars title pb2"></span><span class="db pb2">Price: <span class="costshirtmars"></span></span><span class="descshirtmars db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="shirt-tesla" class="item ma1" data-type="tops">
+        <span id="tt"><span class="nameshirttesla title pb2"></span><span class="db pb2">Price: <span class="costshirttesla"></span></span><span class="descshirttesla db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="shorts-denim" class="item ma1" data-type="bottoms">
+        <span id="tt"><span class="nameshortsdenim title pb2"></span><span class="db pb2">Price: <span class="costshortsdenim"></span></span><span class="descshortsdenim db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="tanktop-black" class="item ma1" data-type="tops">
+        <span id="tt"><span class="nametanktopblack title pb2"></span><span class="db pb2">Price: <span class="costtanktopblack"></span></span><span class="desctanktopblack db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="thighhighs-rainbow" class="item ma1" data-type="bottoms">
+        <span id="tt"><span class="namethighhighsrainbow title pb2"></span><span class="db pb2">Price: <span class="costthighhighsrainbow"></span></span><span class="descthighhighsrainbow db pv2 bt bw1 b--dcgs"></span></span>
+      </div>
+      <div id="top-pink" class="item ma1" data-type="tops">
+        <span id="tt"><span class="nametoppink title pb2"></span><span class="db pb2">Price: <span class="costtoppink"></span></span><span class="desctoppink db pv2 bt bw1 b--dcgs"></span></span>
       </div>
     </div>
-    <div id="exitshoppingmall" class="c-hand w4 center mt3 pt2 pb1 f3 ttu ba">
+    <div id="exitshoppingmall" class="c-hand w4 center mv3 pt2 pb1 f3 ttu ba">
       <span>Exit</span>
     </div>
   </div>

@@ -18,8 +18,9 @@ body {
   background: linear-gradient(to bottom, #240b36, #c31432);
   overflow: hidden;
 }
-::-moz-selection{color:inherit;background:transparent}
-::selection{color:inherit;background:transparent}
+*{image-rendering:pixelated}
+*::-moz-selection{color:inherit;background:transparent}
+*::selection{color:inherit;background:transparent}
 *::-webkit-input-placeholder{color:white}
 *:-moz-placeholder{color:white}
 *::-moz-placeholder{color:white}
@@ -94,26 +95,24 @@ small {
   background: #540d6e url(../img/progmax.gif) repeat-x bottom left;
 }
 .item {
-  width: 128px;
+  width: 500px;
   height: 128px;
   border: 4px double #540d6e;
   background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  background-position: 8px center;
+  background-size: 20%;
+}
+.item #tt {
+  position: absolute;
+  left: 64px;
+  padding: 8px 0 0 128px;
+  width: 364px;
+  height: 112px;
+  text-align: left;
+  background: linear-gradient(to right, transparent 0%, #000 25%);
+  z-index: 99;
 }
 
-.item:hover #tt {
-  position: absolute;
-  margin-top: -4px;
-  margin-left: 128px;
-  padding: 8px;
-  display: block;
-  width: 256px;
-  height: 120px;
-  border: 4px double #540d6e;
-  text-align: left;
-  background: #111;
-}
 .simulator {
   height: 512px;
   overflow: hidden;
@@ -181,16 +180,28 @@ small {
   width: 388px;
   height: 152px;
 }
-#bed-purple{background-image:url(../img/bed-purple.gif)}
+
 .drone {
   position: absolute;
-  bottom: 22px;
-  margin-left: 0px;
-  width: 388px;
-  height: 152px;
+  bottom: 256px;
+  margin-left: 480px;
+  width: 174px;
+  height: 96px;
 }
-#drone-bat{background-image:url(../img/drone-bat.gif)}
-
+.facemask {
+  position: absolute;
+  bottom: 294px;
+  margin-left: 36px;
+  width: 50px;
+  height: 28px;
+}
+.glasses {
+  position: absolute;
+  bottom: 318px;
+  margin-left: 36px;
+  width: 50px;
+  height: 16px;
+}
 .hair {
   position: absolute;
   bottom: 286px;
@@ -198,18 +209,27 @@ small {
   width: 102px;
   height: 92px;
 }
-#hair-white{background-image:url(../img/hair-white.gif)}
-
+.hat {
+  position: absolute;
+  bottom: 334px;
+  margin-left: 18px;
+  width: 86px;
+  height: 48px;
+}
+.miniskirt {
+  position: absolute;
+  bottom: 162px;
+  margin-left: 16px;
+  width: 90px;
+  height: 40px;
+}
 .shirt {
   position: absolute;
-  bottom: 186px;
-  margin-left: 6px;
-  width: 110px;
-  height: 114px;
+  bottom: 190px;
+  margin-left: 14px;
+  width: 94px;
+  height: 104px;
 }
-#shirt-mars{background-image:url(../img/shirt-mars.gif)}
-#shirt-tesla{background-image:url(../img/shirt-tesla.gif)}
-
 .shorts {
   position: absolute;
   bottom: 118px;
@@ -217,8 +237,27 @@ small {
   width: 78px;
   height: 76px;
 }
-#shorts-denim{background-image:url(../img/shorts-denim.gif)}
-
+.tanktop {
+  position: absolute;
+  bottom: 200px;
+  margin-left: 26px;
+  width: 70px;
+  height: 90px;
+}
+.thighhighs {
+  position: absolute;
+  bottom: 10px;
+  margin-left: 30px;
+  width: 62px;
+  height: 126px;
+}
+.top {
+  position: absolute;
+  bottom: 224px;
+  margin-left: 32px;
+  width: 58px;
+  height: 66px;
+}
 #wardrobe {
   position: absolute;
   bottom: 22px;
@@ -258,9 +297,11 @@ small {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 512px;
+  width: 640px;
   height: 512px;
   border-color: #540d6e;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .notify {
   top: 50%;
@@ -270,3 +311,16 @@ small {
   height: 128px;
   border-color: #540d6e;
 }
+#bed-purple{background-image:url(../img/bed-purple.gif)}
+#drone-bat{background-image:url(../img/drone-bat.gif)}
+#facemask-samurai{background-image:url(../img/facemask-samurai.gif)}
+#glasses-purpletint{background-image:url(../img/glasses-purpletint.gif)}
+#hair-white{background-image:url(../img/hair-white.gif)}
+#hat-redcap{background-image:url(../img/hat-redcap.gif)}
+#miniskirt-white{background-image:url(../img/miniskirt-white.gif)}
+#shirt-mars{background-image:url(../img/shirt-mars.gif)}
+#shirt-tesla{background-image:url(../img/shirt-tesla.gif)}
+#shorts-denim{background-image:url(../img/shorts-denim.gif)}
+#tanktop-black{background-image:url(../img/tanktop-black.gif)}
+#thighhighs-rainbow{background-image:url(../img/thighhighs-rainbow.gif)}
+#top-pink{background-image:url(../img/top-pink.gif)}

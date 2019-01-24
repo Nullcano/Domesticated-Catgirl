@@ -51,3 +51,37 @@ $("#closepoor").click(function() {
   $(".notifypoor").hide();
 });
 
+//Sort items
+$('.menu li').click(function() {
+  $(this).parent().find('li.active').removeClass('active');
+  $(this).addClass('active');
+  var type = $(this).attr('data-type');
+  filterCards(type);
+});
+function filterCards(type) {
+  showAllCards('.list','div');
+  if (type == "all") {
+    showAllCards('.list','div');
+  } else {
+    $(".list").find("div[data-type!=" + type + "]").each(function (i) {
+      $(this).hide();
+    });
+  }
+};
+function showAllCards(parent, finding) {
+  $(parent).find(finding).each(function(i) {
+    $(this).show();
+  })
+};
+
+//Randomize things
+function poor() {
+  var confirm = [
+    "Fuck...",
+    "Shit...",
+    "Damn...",
+    "Fine...",
+    "REEEEE!"
+  ];
+  $("#confirm").text(confirm[Math.floor(Math.random() * confirm.length)]);
+};
