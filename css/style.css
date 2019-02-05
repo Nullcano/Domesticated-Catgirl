@@ -27,7 +27,7 @@ body {
 .c-hand{cursor: url(../img/cursor-hand.gif), auto}
 .c-drag{cursor: url(../img/cursor-drag.gif), auto}
 
-#loadingscreen{background:#1c0627;z-index: 9}
+#loadingscreen{background:#1c0627;z-index: 9999}
 
 .title, ul.menu li.active {
   color: transparent;
@@ -76,9 +76,6 @@ body {
 .b--dcgs {
   border-color: #540d6e;
 }
-.bg-dark {
-  background-color: #1c0627;
-}
 .stats {
   overflow:hidden;
 }
@@ -86,7 +83,7 @@ body {
   margin-bottom: -1px;
   background-color: #1c0627;
 }
-.gamemenu .menuitem.current::before {
+.menuitem.current::before {
   content: "";
   position: absolute;
   margin-top: 4px;
@@ -119,6 +116,8 @@ small {
   background: #540d6e url(../img/progmax.gif) repeat-x bottom left;
 }
 .item {
+  width: 500px;
+  height: 128px;
   border: 4px double #540d6e;
   background-repeat: no-repeat;
   background-position: 8px center;
@@ -139,12 +138,12 @@ small {
   height: 512px;
   overflow: hidden;
 }
-#room {
+.room {
   min-width: 1024px;
   height: 100%;
   background: url(../img/wall-dcgs.gif) bottom center;
 }
-#room #floor {
+.room #floor {
   position: absolute;
   bottom: 0;
   width: 1016px;
@@ -524,7 +523,3 @@ progress#affection[value]::-moz-progress-bar {
 #tanktop-black{background-image:url(../img/tanktop-black.gif)}
 #thighhighs-rainbow{background-image:url(../img/thighhighs-rainbow.gif)}
 #top-pink{background-image:url(../img/top-pink.gif)}
-
-#map {
-  z-index: 8;
-}

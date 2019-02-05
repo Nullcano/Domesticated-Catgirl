@@ -20,12 +20,11 @@ $('.menuitem').click(function(){
   $('.content').removeClass('current');
   $(this).addClass('current');
   $("#"+content).addClass('current');
-  $("#map").hide();
 })
 
 //Popups
 $("#door").click(function() {
-  $("#map").show();
+  $(".megamenu").show();
   open.play();
 });
 $("#wardrobe").click(function() {
@@ -37,22 +36,22 @@ $("#achievements").click(function() {
 });
 $("#gotoupgradestore").click(function() {
   $(".upgradestore").show();
-  $("#map").hide();
+  $(".megamenu").hide();
 });
 $("#gotoshoppingmall").click(function() {
   $(".shoppingmall").show();
-  $("#map").hide();
+  $(".megamenu").hide();
 });
 $("#gotolootcrateshop").click(function() {
   $(".lootcrateshop").show();
-  $("#map").hide();
+  $(".megamenu").hide();
 });
 $("#gotocatnipfarm").click(function() {
   $(".catnipfarm").show();
-  $("#map").hide();
+  $(".megamenu").hide();
 });
 $("#closemegamenu").click(function() {
-  $("#map").hide();
+  $(".megamenu").hide();
   close.play();
 });
 $("#closewardrobe").click(function() {
