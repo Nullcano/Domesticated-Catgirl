@@ -1,16 +1,13 @@
 @font-face {
-  font-family:Beeb;
-  src:url(../font/beeb.ttf);
-}
-@font-face {
-  font-family:RPGTown;
-  src:url(../font/rpgtown.ttf);
+  font-family:DCGS;
+  src:url(../font/WarioLand4CHMC.ttf);
 }
 
 body {
   min-height: 100vh;
-  font-family: RPGTown;
+  font-family: DCGS;
   font-size: 16px;
+  text-shadow:2px 0 0 #000,-2px 0 0 #000,0 2px 0 #000,0 -2px 0 #000,1px 1px 0 #000,-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 5px #000;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: #c31432;
@@ -30,6 +27,8 @@ body {
 .c-hand{cursor: url(../img/cursor-hand.gif), auto}
 .c-drag{cursor: url(../img/cursor-drag.gif), auto}
 
+#loadingscreen{background:#1c0627;z-index: 9}
+
 .title, ul.menu li.active {
   color: transparent;
   background: #f84c70 url(../img/progval.gif);
@@ -37,8 +36,8 @@ body {
   -moz-background-clip: text;
   background-clip: text;
   display: block;
-  font-family: Beeb;
   text-transform: uppercase;
+  text-shadow:none;
 }
 
 .stars {
@@ -77,26 +76,49 @@ body {
 .b--dcgs {
   border-color: #540d6e;
 }
-progress[value] {
+.bg-dark {
+  background-color: #1c0627;
+}
+.stats {
+  overflow:hidden;
+}
+.gamemenu {
+  margin-bottom: -1px;
+  background-color: #1c0627;
+}
+.gamemenu .menuitem.current::before {
+  content: "";
+  position: absolute;
+  margin-top: 4px;
+  margin-left: -16px;
+  width: 16px;
+  height: 8px;
+  background: #540d6e;
+}
+.content {
+  display: none;
+}
+.content.current {
+  display: flex;
+}
+progress#experience[value] {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
   width: 100%;
   height: 16px;
-  background: url(../img/progmax.gif) repeat-x bottom left;
+  background: #1c0627 url(../img/progmax.gif) repeat-x bottom left;
 }
-progress[value]::-moz-progress-bar {
+progress#experience[value]::-moz-progress-bar {
   height: 16px;
-  background: url(../img/progval.gif) repeat-x bottom left;
+  background: #1c0627 url(../img/progval.gif) repeat-x bottom left;
 }
 small {
   font-size: 16px;
   background: #540d6e url(../img/progmax.gif) repeat-x bottom left;
 }
 .item {
-  width: 500px;
-  height: 128px;
   border: 4px double #540d6e;
   background-repeat: no-repeat;
   background-position: 8px center;
@@ -117,12 +139,12 @@ small {
   height: 512px;
   overflow: hidden;
 }
-.room {
+#room {
   min-width: 1024px;
   height: 100%;
-  background: url(../img/wall-bricks-light.gif) bottom center;
+  background: url(../img/wall-dcgs.gif) bottom center;
 }
-.room #floor {
+#room #floor {
   position: absolute;
   bottom: 0;
   width: 1016px;
@@ -153,13 +175,20 @@ small {
   height: 42px;
   background: #222;
 }
-#catgirl {
+.catgirl {
   position: absolute;
   bottom: 0;
   margin-left: 256px;
   width: 150px;
   height: 388px;
-  background: url(../img/girl-base.gif);
+}
+.zombify {
+  position: absolute;
+  bottom: 0;
+  margin-left: 0;
+  width: 150px;
+  height: 388px;
+  background: url(../img/zombify.gif);
 }
 .dialog {
   position: absolute;
@@ -168,6 +197,7 @@ small {
   margin-left: 20px;
   padding: 8px;
   color: #000;
+  text-shadow: none;
   background: #fff;
   -webkit-box-shadow: 4px 4px 0px 0px #000;
   -moz-box-shadow: 4px 4px 0px 0px #000;
@@ -274,6 +304,42 @@ small {
   height: 362px;
   background: url(../img/wardrobe-default.gif);
 }
+
+/*Status bars*/
+.statusbars {
+  position: absolute;
+  top: 0;
+  width: 512px;
+  margin-left: 512px;
+}
+.statusbars span {
+  position: absolute;
+  padding: 0 4px;
+  text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
+}
+progress.status[value] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  height: 16px;
+  width: 100%;
+  background: rgba(0,0,0,.8);
+}
+progress#thirst[value]::-moz-progress-bar {
+  background: #357EDD;
+}
+progress#hunger[value]::-moz-progress-bar {
+  background: #FF4136;
+}
+progress#affection[value]::-moz-progress-bar {
+  background: #A463F2;
+}
+.itemimg {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
 #door {
   position: absolute;
   bottom: 86px;
@@ -282,7 +348,7 @@ small {
   height: 256px;
   background: url(../img/door-default.gif);
 }
-.desk {
+#desk {
   position: absolute;
   bottom: 22px;
   margin-left: 128px;
@@ -297,6 +363,23 @@ small {
   width: 176px;
   height: 106px;
   background: url(../img/laptop.gif);
+}
+#nyawei {
+  position: absolute;
+  bottom: 182px;
+  margin-left: 390px;
+  width: 28px;
+  height: 58px;
+  background: url(../img/nyawei.gif);
+  background-size: contain;
+}
+.rip {
+  position: absolute;
+  bottom: 20px;
+  margin-left: 128px;
+  width: 182px;
+  height: 102px;
+  background: url(../img/rip.gif);
 }
 .upg {
   border-color: #540d6e;
@@ -319,6 +402,115 @@ small {
   height: 128px;
   border-color: #540d6e;
 }
+
+/* Catnip Farm */
+.land {
+  width: 150%;
+  height: 100%;
+  background: url(../img/grass.gif) top left;
+}
+.crops {
+  position: absolute;
+  margin-left: 128px;
+  bottom: 0;
+  width: 768px;
+  height: 384px;
+  background: url(../img/dirt.gif) top left;
+}
+.catnip {
+  width: 128px;
+  height: 128px;
+}
+.catnip.ready {
+  background: url(../img/catnip.gif);
+}
+/* Morphing Lab */
+.lab {
+  min-width: 100%;
+  height: 100%;
+  background: url(../img/wall-bricks-light.gif) bottom center;
+}
+.lab #floor {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 42px;
+  background: #222;
+}
+.morphingback {
+  position: absolute;
+  bottom: 0;
+  margin-left: 200px;
+  width: 236px;
+  height: 436px;
+  background: url(../img/morphing-back.gif);
+}
+.morphingfront {
+  position: absolute;
+  bottom: 0;
+  margin-left: 200px;
+  width: 236px;
+  height: 436px;
+  background: url(../img/morphing-front.png);
+}
+.custom-input {
+  margin: 4px;
+  width: 256px;
+  padding: 8px;
+  color: #fff;
+  background-color: #540d6e;
+  border: 0;
+}
+.custom-select {
+  position: absolute;
+  margin-top: 128px;
+  margin-left: 312px;
+  width: 256px;
+  font-family: DCGS;
+}
+.custom-select select {
+  display: none;
+}
+.select-selected {
+  background-color: #540d6e;
+}
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 16px;
+  right: 8px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 8px;
+}
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+.select-items {
+  position: absolute;
+  background-color: #540d6e;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+.select-hide {
+  display: none;
+}
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 #bed-purple{background-image:url(../img/bed-purple.gif)}
 #drone-bat{background-image:url(../img/drone-bat.gif)}
 #facemask-samurai{background-image:url(../img/facemask-samurai.gif)}
@@ -332,3 +524,7 @@ small {
 #tanktop-black{background-image:url(../img/tanktop-black.gif)}
 #thighhighs-rainbow{background-image:url(../img/thighhighs-rainbow.gif)}
 #top-pink{background-image:url(../img/top-pink.gif)}
+
+#map {
+  z-index: 8;
+}
