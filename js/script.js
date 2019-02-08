@@ -62,13 +62,14 @@ let upgrades = {
     amount: 0,
   },
 };
-items = {
+let items = {
   bedpurple: {
     cost: 2200,
     owned: 0,
     type: "decoration",
     name: "Bed | Purple",
     desc: "Purrple and comfy.",
+    img: "img/bed-purple.gif"
   },
   dronebat: {
     cost: 4400,
@@ -76,6 +77,7 @@ items = {
     type: "decoration",
     name: "Drone | Bat",
     desc: "A spooky bat-looking drone.",
+    img: "img/drone-bat.gif"
   },
   facemasksamurai: {
     cost: 330,
@@ -83,6 +85,7 @@ items = {
     type: "head",
     name: "Face Mask | Samurai",
     desc: "Surgical mask with a Japanese samurai print.",
+    img: "img/facemask-samurai.gif"
   },
   glassespurpletint: {
     cost: 440,
@@ -90,6 +93,7 @@ items = {
     type: "head",
     name: "Glasses | Purple Tint",
     desc: "Sunglasses with a purple lens tint.",
+    img: "img/glasses-purpletint.gif"
   },
   hairwhite: {
     cost: 1100,
@@ -97,6 +101,7 @@ items = {
     type: "head",
     name: "Hair | White",
     desc: "Pearly white locks.",
+    img: "img/hair-white.gif"
   },
   hatredcap: {
     cost: 550,
@@ -104,6 +109,7 @@ items = {
     type: "head",
     name: "Hat | Red Cap",
     desc: "Red snapback with a paw print.",
+    img: "img/hat-redcap.gif"
   },
   miniskirtwhite: {
     cost: 2200,
@@ -111,6 +117,7 @@ items = {
     type: "bottoms",
     name: "Mini Skirt | White",
     desc: "A white miniskirt.",
+    img: "img/miniskirt-white.gif"
   },
   shirtmars: {
     cost: 3300,
@@ -118,6 +125,7 @@ items = {
     type: "tops",
     name: "Shirt | Mars",
     desc: "This is a reference to SpaceX merch.",
+    img: "img/shirt-mars.gif"
   },
   shirttesla: {
     cost: 5500,
@@ -125,6 +133,7 @@ items = {
     type: "tops",
     name: "Shirt | Tesla",
     desc: "Tribute for when SpaceX sent a Tesla into orbit February 6, 2018.",
+    img: "img/shirt-tesla.gif"
   },
   shortsdenim: {
     cost: 660,
@@ -132,6 +141,7 @@ items = {
     type: "bottoms",
     name: "Shorts | Denim",
     desc: "Basic blue denim shorts.",
+    img: "img/shorts-denim.gif"
   },
   tanktopblack: {
     cost: 110,
@@ -139,6 +149,7 @@ items = {
     type: "tops",
     name: "Tanktop | Black",
     desc: "Solid black tanktop.",
+    img: "img/tanktop-black.gif"
   },
   thighhighsrainbow: {
     cost: 220,
@@ -146,6 +157,7 @@ items = {
     type: "bottoms",
     name: "Thigh Highs | Rainbow",
     desc: "Is this considered a double rainbow?",
+    img: "img/thighhighs-rainbow.gif"
   },
   toppink: {
     cost: 990,
@@ -153,14 +165,8 @@ items = {
     type: "tops",
     name: "Top | Pink",
     desc: "Pink top with a lightning bolt print.",
+    img: "img/top-pink.gif"
   },
-  potionresurrection: {
-    cost: 100,
-    owned: 1,
-    img: "img/potionresurrection.gif",
-    name: "Potion | Resurrection",
-    desc: "Bring your pet back alive. Side-effect will turn her into a zombie.",
-  }
 };
 let docshopitems = {
   potionresurrection: {
@@ -327,12 +333,19 @@ document.getElementById('buycatcoinminer').addEventListener('click', function() 
   }
 });
 
-function renderItems() {
-  for (el in items) {
-    document.getElementById('shop').innerHTML = ('<div class="item"><div style="background-image:url(' + items[el].img + ')"></div><span>'+ items[el].name +'</span><span>Price: '+ items[el].cost +'</span><span>'+ items[el].desc +'</span></div>');
+for (let key of Object.keys(items)) {
+  if (items[key].owned==0) {
+    var el = document.createElement('div');
+    var domString = '<div id="item"><div class="w3 h3 bg-center contain" style="background-image:url(' + items[key].img + ')"></div><span>'+ items[key].name +'</span><span>Price: '+ items[key].cost +'</span><span>'+ items[key].desc +'</span></div>';
+    el.innerHTML =  domString;
+    document.getElementById('shop').appendChild(el.firstChild);
   }
-};
-renderItems();
+}
+for (let key of Object.keys(items)) {
+  document.getElementById('item').addEventListener('click', function() {
+    items[key].owned = 1
+  });
+}
 
 //Catnip farm
 catnip = {
