@@ -52,7 +52,7 @@ let traits = {
     morph: 0, img: "url(img/girl-fox.gif)"
   }
 };
-upgrades = {
+let upgrades = {
   fasterlaptops: {
     cost: 8,
     amount: 0,
@@ -62,7 +62,107 @@ upgrades = {
     amount: 0,
   },
 };
-docshopitems = {
+items = {
+  bedpurple: {
+    cost: 2200,
+    owned: 0,
+    type: "decoration",
+    name: "Bed | Purple",
+    desc: "Purrple and comfy.",
+  },
+  dronebat: {
+    cost: 4400,
+    owned: 0,
+    type: "decoration",
+    name: "Drone | Bat",
+    desc: "A spooky bat-looking drone.",
+  },
+  facemasksamurai: {
+    cost: 330,
+    owned: 0,
+    type: "head",
+    name: "Face Mask | Samurai",
+    desc: "Surgical mask with a Japanese samurai print.",
+  },
+  glassespurpletint: {
+    cost: 440,
+    owned: 0,
+    type: "head",
+    name: "Glasses | Purple Tint",
+    desc: "Sunglasses with a purple lens tint.",
+  },
+  hairwhite: {
+    cost: 1100,
+    owned: 0,
+    type: "head",
+    name: "Hair | White",
+    desc: "Pearly white locks.",
+  },
+  hatredcap: {
+    cost: 550,
+    owned: 0,
+    type: "head",
+    name: "Hat | Red Cap",
+    desc: "Red snapback with a paw print.",
+  },
+  miniskirtwhite: {
+    cost: 2200,
+    owned: 0,
+    type: "bottoms",
+    name: "Mini Skirt | White",
+    desc: "A white miniskirt.",
+  },
+  shirtmars: {
+    cost: 3300,
+    owned: 0,
+    type: "tops",
+    name: "Shirt | Mars",
+    desc: "This is a reference to SpaceX merch.",
+  },
+  shirttesla: {
+    cost: 5500,
+    owned: 0,
+    type: "tops",
+    name: "Shirt | Tesla",
+    desc: "Tribute for when SpaceX sent a Tesla into orbit February 6, 2018.",
+  },
+  shortsdenim: {
+    cost: 660,
+    owned: 0,
+    type: "bottoms",
+    name: "Shorts | Denim",
+    desc: "Basic blue denim shorts.",
+  },
+  tanktopblack: {
+    cost: 110,
+    owned: 0,
+    type: "tops",
+    name: "Tanktop | Black",
+    desc: "Solid black tanktop.",
+  },
+  thighhighsrainbow: {
+    cost: 220,
+    owned: 0,
+    type: "bottoms",
+    name: "Thigh Highs | Rainbow",
+    desc: "Is this considered a double rainbow?",
+  },
+  toppink: {
+    cost: 990,
+    owned: 0,
+    type: "tops",
+    name: "Top | Pink",
+    desc: "Pink top with a lightning bolt print.",
+  },
+  potionresurrection: {
+    cost: 100,
+    owned: 1,
+    img: "img/potionresurrection.gif",
+    name: "Potion | Resurrection",
+    desc: "Bring your pet back alive. Side-effect will turn her into a zombie.",
+  }
+};
+let docshopitems = {
   potionresurrection: {
     cost: 100,
     owned: 1,
@@ -190,6 +290,12 @@ document.getElementById('work').addEventListener('click', function() {
   updateNum();
 });
 
+function timer() {
+  money = money + moneysec;
+  updateNum();
+};
+setInterval(timer, 1000);
+
 //Buy upgrades
 document.getElementById('buyfasterlaptops').addEventListener('click', function() {
   if (money >= upgrades.fasterlaptops.cost) {
@@ -221,11 +327,12 @@ document.getElementById('buycatcoinminer').addEventListener('click', function() 
   }
 });
 
-function timer() {
-  money = money + moneysec;
-  updateNum();
+function renderItems() {
+  for (el in items) {
+    document.getElementById('shop').innerHTML = ('<div class="item"><div style="background-image:url(' + items[el].img + ')"></div><span>'+ items[el].name +'</span><span>Price: '+ items[el].cost +'</span><span>'+ items[el].desc +'</span></div>');
+  }
 };
-setInterval(timer, 1000);
+renderItems();
 
 //Catnip farm
 catnip = {
@@ -279,6 +386,7 @@ document.getElementById('openabout').addEventListener('click', function() {
   document.getElementById('wiki').style.display = "none";
   document.getElementById('about').style.display = "flex";
 });
+
 // Open objects
 document.getElementById('wardrobe').addEventListener('click', function() {
   document.getElementById('openwardrobe').classList.remove('dn');
@@ -295,6 +403,15 @@ document.getElementById('door').addEventListener('click', function() {
 document.getElementById('closemap').addEventListener('click', function() {
   document.getElementById('map').classList.add('dn');
   close.play();
+});
+
+// Open map locations
+document.getElementById('gotoshoppingmall').addEventListener('click', function() {
+  document.getElementById('shoppingmall').classList.remove('dn');
+  document.getElementById('map').classList.add('dn');
+});
+document.getElementById('exitshoppingmall').addEventListener('click', function() {
+  document.getElementById('shoppingmall').classList.add('dn');
 });
 
 //Lock & Load
