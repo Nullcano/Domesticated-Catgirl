@@ -2,7 +2,7 @@
 
 Web application to domesticate and customize a Catgirl.
 ```
-Currently using JavaScript and jQuery.
+Currently using JavaScript.
 ```
 
 ## Collab 💕
