@@ -27,8 +27,6 @@ body {
 .c-hand{cursor: url(../img/cursor-hand.gif), auto}
 .c-drag{cursor: url(../img/cursor-drag.gif), auto}
 
-#loadingscreen{background:#1c0627;z-index: 9}
-
 .title, ul.menu li.active {
   color: transparent;
   background: #f84c70 url(../img/progval.gif);
@@ -175,7 +173,7 @@ small {
   height: 42px;
   background: #222;
 }
-.catgirl {
+#catgirl {
   position: absolute;
   bottom: 0;
   margin-left: 256px;
