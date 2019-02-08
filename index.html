@@ -3,30 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Shi</title>
+  <title>Domesticated Catgirl Simulator</title>
   <link href="img/favicon.ico" rel="shortcut icon">
-  <link href="https://fonts.googleapis.com/css?family=Oxygen|Righteous" rel="stylesheet">
   <link href="css/tachyons.min.css" rel="stylesheet" type="text/css">
   <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body class="near-white bg-navy c-def lh-solid" oncontextmenu="return true;">
-  <div id="loadingscreen" class="fixed w-100 vh-100 flex items-center justify-center">
-    <span></span>
+  <div id="preloader" class="fixed top-0 w-100 vh-100 bg-dark flex flex-column justify-center items-center white" style="z-index: 9">
+    <div class="w-100 flex flex-column justify-center items-center tc">
+      <div class="f3">Rendering simulation</div>
+    </div>
   </div>
   <div class="stars"></div>
   <div class="gamemenu relative w-100 flex flex-row justify-between bg-dcgs">
     <div class="flex flex-row">
-      <span class="menuitem current pv2 ph3" data-content="dcgs">DCGS</span>
-      <span class="menuitem pv2 ph3" data-content="options">Options</span>
-      <span class="menuitem pv2 ph3" data-content="wiki">Wiki</span>
-      <span class="menuitem pv2 ph3" data-content="about">About</span>
+      <span id="opensim" class="pv2 ph3">DCGS</span>
+      <span id="openoptions" class="pv2 ph3">Options</span>
+      <span id="openwiki" class="pv2 ph3">Wiki</span>
+      <span id="openabout" class="pv2 ph3">About</span>
     </div>
     <div class="flex flex-row">
       <a class="link white pv2 ph3" href="https://discordapp.com/invite/RKZCjKb" target="_blank">Join on Discord</a>
       <a class="link white pv2 ph3" href="https://ko-fi.com/dcgsim" target="_blank">Support on Ko-fi</a>
     </div>
   </div>
-  <progress id="experience" class="v-mid relative w-100 bg-dcgs"></progress>
+  <div id="experience" class="v-mid relative w-100 bg-dcgs">
+    <div id="totalexperience"></div>
+  </div>
   <div class="stats relative pa1 w-100 flex flex-row bg-dcgs horizontal dragscroll c-drag">
     <div class="ph2 w5 flex items-center">
       <img class="w1 h1" src="img/version.gif" /> <span id="version"></span>
@@ -41,70 +44,14 @@
       <img class="w1 h1" src="img/catnip.gif" /> <span id="catnipinv" class="ph1">0</span>
     </div>
   </div>
-  <main id="options" class="relative content w-100 min-vh-100 bg-black-50">
-    <div class="w-70 center flex flex-column">
-      <h1 class="mt4 fw1 f1 tc">Options</h1>
-      <div class="mv3 flex flex-row justify-around f3">
-        <div>
-          <h3 class="mv2 fw1 f3">Change pet name</h3>
-          <input id="petinput" class="input-reset ma0 white bg-transparent bn" maxlength="16" placeholder="Pet" type="text" />
-          <button id="editpetname" class="ma0 white bg-transparent bn c-hand">OK</button>
-        </div>
-        <div>
-          <h3 class="mv2 fw1 f3">Change your name</h3>
-          <input id="masterinput" class="input-reset ma0 white bg-transparent bn" maxlength="16" placeholder="Master" type="text" />
-          <button id="editmastername" class="ma0 white bg-transparent bn c-hand">OK</button>
-        </div>
-      </div>
-      <div class="mv4 h1 bg-black-50"></div>
-      <div class="mv3 flex flex-row justify-around f3">
-        <span id="save" class="db mv2 c-hand">Manual save</span>
-        <span id="mute" class="db mv2 c-hand">Mute sounds</span>
-      </div>
-    </div>
-  </main>
-  <main id="wiki" class="content w-100 min-vh-100 bg-black-50">
-    <div class="w-70 center flex flex-column">
-      <div class="pa3 f3 lh-copy">
-        <h1 class="ma0 fw1 f1 tc">Wiki</h1>
-        <p>Coming soon</p>
-      </div>
-    </div>
-  </main>
-  <main id="about" class="content w-100 min-vh-100 bg-black-50">
-    <div class="w-70 center flex flex-column">
-      <div class="pa3 f3 lh-copy">
-        <h1 class="ma0 fw1 f1 tc">About</h1>
-        <p>Domesticated Catgirl Simulator (or DCGS for short) is a simulation game that is currently experienced in your browser. The concept of it is to domesticate a "nekomimi" by working hard and spoiling harder.</p>
-        <p>We are aiming bigger in development for mobile apps and also trying to head Steam's way and we want to publish our cute pets at their platform.</p>
-        <p>Read more on our Ko-fi page by clicking the respective link below.</p>
-      </div>
-      <div class="pa3 f4 flex flex-row">
-        <a class="link white pv2 ph3" href="https://discordapp.com/invite/RKZCjKb" target="_blank">Join on Discord</a>
-        <a class="link white pv2 ph3" href="https://ko-fi.com/dcgsim" target="_blank">Support on Ko-fi</a>
-      </div>
-    </div>
-  </main>
-  <main id="dcgs" class="content current simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
-    <aside class="room br bw3 b--near-black">
-      <span class="pa3 f3"><span class="petname"></span>'s room</span>
+  <main id="sim" class="simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
+    <aside id="room" class="br bw3 b--near-black">
+      <span class="pa3 f3"><span class="petname">Pet</span>'s room</span>
       <div id="floor"></div>
       <div id="achievements" class="c-hand"></div>
       <div id="wardrobe" class="c-hand"></div>
-      <div id="bed-purple" class="c-hand bed"></div>
-      <div class="catgirl c-hand">
+      <div id="catgirl" class="c-hand">
         <div class="zombify dn"></div>
-        <div id="hair-white" class="hair"></div>
-        <div id="facemask-samurai" class="facemask"></div>
-        <div id="glasses-purpletint" class="glasses"></div>
-        <div id="hat-redcap" class="hat"></div>
-        <div id="thighhighs-rainbow" class="thighhighs"></div>
-        <div id="shorts-denim" class="shorts"></div>
-        <div id="miniskirt-white" class="miniskirt"></div>
-        <div id="tanktop-black" class="tanktop"></div>
-        <div id="top-pink" class="top"></div>
-        <div id="shirt-mars" class="shirt"></div>
-        <div id="shirt-tesla" class="shirt"></div>
         <div id="talk" class="dialog dn"></div>
         <div id="emote" class="dialog dn"></div>
       </div>
@@ -129,7 +76,7 @@
       <div id="door" class="c-hand"></div>
     </section>
     <aside class="office bl bw3 b--near-black">
-      <span class="pa3 f3"><span class="mastername"></span>'s office</span>
+      <span class="pa3 f3"><span class="mastername">Master</span>'s office</span>
       <div id="floor"></div>
       <div id="desk"></div>
       <div id="work" class="c-hand laptop"></div>
@@ -140,7 +87,7 @@
       </div>
     </aside>
   </main>
-  <main id="farm" class="content simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
+  <main id="farm" class="simulator w-100 fixed bottom-0 dn bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
     <aside class="land w-100 br bw3 b--near-black">
       <span class="pa3 f3">Catnip Farm</span>
       <div class="crops flex flex-wrap">
@@ -156,12 +103,12 @@
       </div>
     </aside>
   </main>
-  <main id="morphing" class="content simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
+  <main id="morphing" class="simulator w-100 fixed bottom-0 dn bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
     <aside class="lab w-100 br bw3 b--near-black">
       <span class="pa3 f3">Morphing Lab</span>
       <div id="floor" class="w-100"></div>
       <div class="morphingback"></div>
-      <div class="catgirl"></div>
+      <div id="catgirl"></div>
       <div class="morphingfront"></div>
       <span class="custom-select">
         <select>
@@ -176,7 +123,7 @@
       </span>
     </aside>
   </main>
-  <main id="doctor" class="content simulator w-100 fixed bottom-0 flex flex-row bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
+  <main id="doctor" class="simulator w-100 fixed bottom-0 dn bg-dark-gray bt bw3 b--near-black horizontal dragscroll c-drag">
     <aside class="doc w-100 br bw3 b--near-black">
       <span class="pa3 f3">Doctor Bogus</span>
       <div id="floor" class="w-100"></div>
@@ -186,7 +133,7 @@
       </div>
     </aside>
   </main>
-  <div class="openwardrobe popup fixed pa3 bg-near-black ba bw1 dn">
+  <div id="openwardrobe" class="popup fixed pa3 bg-near-black ba bw1 dn">
     <span class="title mb2 tc">Inventory</span>
     <ul class="list pa0 menu flex flex-row items-center justify-center">
       <li class="active c-hand ph2" data-type="all">All</li>
@@ -246,7 +193,7 @@
     </div>
   </div>
 
-  <div class="upgradestore popup fixed pa3 bg-near-black ba bw1 dn">
+  <div id="upgradestore" class="popup fixed pa3 bg-near-black ba bw1 dn">
     <span class="title mb2 tc">Upgrade Store</span>
     <div id="buyfasterlaptops" class="upg c-hand grow ma2 ba">
       <small class="db pa1 tc ttu">Increase click power</small>
@@ -268,7 +215,7 @@
       <span class="pt2 pb1 ph3 f3 ttu ba">Exit</span>
     </div>
   </div>
-  <div class="shoppingmall popup fixed pa3 bg-near-black tc ba bw1 dn">
+  <div id="shoppingmall" class="popup fixed pa3 bg-near-black tc ba bw1 dn">
     <span class="title tc">Shopping Mall</span>
     <ul class="list pa0 menu flex flex-row items-center justify-center">
       <li class="active c-hand ph2" data-type="all">All</li>
@@ -319,8 +266,8 @@
         <span id="tt"><span class="nametoppink title pb2"></span><span class="db pb2">Price: <span class="costtoppink"></span></span><span class="desctoppink db pv2 bt bw1 b--dcgs"></span></span>
       </div>
     </div>
-    <div id="exitshoppingmall" class="c-hand w4 center mv3 pt2 pb1 f3 ttu ba">
-      <span>Exit</span>
+    <div id="exitshoppingmall" class="c-hand mt3 tc">
+      <span class="pt2 pb1 ph3 f3 ttu ba">Exit</span>
     </div>
   </div>
   <div class="lootcrateshop popup fixed pa3 bg-near-black tc ba bw1 dn">
@@ -354,47 +301,101 @@
     <span class="title mb2">Achievement Unlocked!</span>
     <span class="flex items-center"><img class="imgcatbabtism mr2" src="" /><span><span class="namecatbabtism title mv2"></span><span class="desccatbabtism db pv2 bt bw1 b--dcgs"></span></span><span class="ml4 f3"><span class="mb1 db f5">Reward:</span><span class="xpcatbabtism"></span> XP</span></span>
   </div>
-  <div class="megamenu popup fixed pa3 bg-near-black ba bw1 dn">
-    <span class="title mb2 tc">Where do you want to go?</span>
-    <div class="menuitem c-hand ma2 grow pa2 ba" data-content="dcgs">
-      <span class="title mb2">Home</span>
-      <span>I don't feel like going outside.</span>
-    </div>
-    <div class="menuitem c-hand grow ma2 pa2 ba" data-content="farm">
-      <span class="title mb2">Catnip Farm</span>
-      <span>Farm Catnip to consume or sell.</span>
-    </div>
-    <div id="gotoupgradestore" class="c-hand grow ma2 pa2 ba">
-      <span class="title mb2">Upgrade Store</span>
-      <span>Buy work supplies to help you earn money faster.</span>
-    </div>
-    <div id="gotoshoppingmall" class="c-hand grow ma2 pa2 ba">
-      <span class="title mb2">Shopping Mall</span>
-      <span>Buy clothes and furniture for your catgirl.</span>
-    </div>
-    <div id="gotolootcrateshop" class="c-hand grow ma2 pa2 ba">
-      <span class="title mb2">Loot Crate Shop</span>
-      <span>Buy loot crates to get exclusive items.</span>
-    </div>
-    <div class="menuitem c-hand grow ma2 pa2 ba" data-content="doctor">
-      <span class="title mb2">Doctor Bogus</span>
-      <span>Self certified doctor that doubles as a potion seller.</span>
-    </div>
-    <div class="menuitem c-hand grow ma2 pa2 ba" data-content="morphing">
-      <span class="title mb2">Morphing Lab</span>
-      <span>Genetical pet engineering.</span>
+  <div id="map" class="fixed top-0 w-100 vh-100 pa3 bg-black-90 dn">
+    <div id="mapinner" class="flex flex-column items-center justify-center tc">
+      <span class="title mv4 f3 tc">Where do you want to go?</span>
+      <span class="mv3 f3">Neighborhood</span>
+      <div class="flex flex-row">
+        <div class="togglescene c-hand ma2 grow pa2 bg-dark" data-scene="dcgs">
+          <span class="title mb2 f3">Home</span>
+          <span>I don't feel like going outside.</span>
+        </div>
+        <div class="togglescene c-hand grow ma2 pa2 bg-dark" data-scene="farm">
+          <span class="title mb2 f3">Catnip Farm</span>
+          <span>Farm Catnip to consume or sell.</span>
+        </div>
+      </div>
+      <span class="mv3 f3">Stores</span>
+      <div class="flex flex-row">
+        <div id="gotoupgradestore" class="c-hand grow ma2 pa2 bg-dark">
+          <span class="title mb2 f3">Upgrade Store</span>
+          <span>Buy work supplies to help you earn money faster.</span>
+        </div>
+        <div id="gotoshoppingmall" class="c-hand grow ma2 pa2 bg-dark">
+          <span class="title mb2 f3">Shopping Mall</span>
+          <span>Buy clothes and furniture for your catgirl.</span>
+        </div>
+        <div id="gotolootcrateshop" class="c-hand grow ma2 pa2 bg-dark">
+          <span class="title mb2 f3">Loot Crate Shop</span>
+          <span>Buy loot crates to get exclusive items.</span>
+        </div>
+      </div>
+      <span class="mv3 f3">Facilities</span>
+      <div class="flex flex-row">
+        <div class="togglescene c-hand grow ma2 pa2 bg-dark" data-scene="doctor">
+          <span class="title mb2 f3">Doctor Bogus</span>
+          <span>Self certified doctor that doubles as a potion seller.</span>
+        </div>
+        <div class="togglescene c-hand grow ma2 pa2 bg-dark" data-scene="morphing">
+          <span class="title mb2 f3">Morphing Lab</span>
+          <span>Genetical pet engineering.</span>
+        </div>
+      </div>
+      <div id="closemap" class="ma4 f3">Close Map</div>
     </div>
     <div id="closemegamenu">Close</div>
   </div>
-  <div class="notify fixed pa3 bg-near-black tc ba bw1 dn">
-    <span class="note f3 tc db"></span>
+  <div id="notify" class="fixed pa3 bg-near-black tc ba bw1 dn">
+    <span id="note" class="f3 tc db"></span>
     <span id="closenote" class="c-hand w4 center mt3 pt2 pb1 f3 ttu ba db">OK</span>
   </div>
-  <img src="img/logo.gif" class="absolute ma3 o-50" />
-  <script src="js/jquery.min.js"></script>
-  <script src="js/sim.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/loadsave.js"></script>
+  <main id="options" class="relative w-100 min-vh-100 bg-black-50 dn">
+    <div class="w-70 center flex flex-column">
+      <h1 class="mt4 fw1 f1 tc">Options</h1>
+      <div class="mv3 flex flex-row justify-around f3">
+        <div>
+          <h3 class="mv2 fw1 f3">Change pet name</h3>
+          <input id="petinput" class="input-reset ma0 white bg-transparent bn" maxlength="16" placeholder="Pet" type="text">
+          <button id="editpetname" class="ma0 white bg-transparent bn c-hand">OK</button>
+        </div>
+        <div>
+          <h3 class="mv2 fw1 f3">Change your name</h3>
+          <input id="masterinput" class="input-reset ma0 white bg-transparent bn" maxlength="16" placeholder="Master" type="text">
+          <button id="editmastername" class="ma0 white bg-transparent bn c-hand">OK</button>
+        </div>
+      </div>
+      <div class="mv4 h1 bg-black-50"></div>
+      <div class="mv3 flex flex-row justify-around f3">
+        <span id="save" class="db mv2 c-hand">Manual save</span>
+        <span id="mute" class="db mv2 c-hand">Mute sounds</span>
+      </div>
+    </div>
+  </main>
+  <main id="wiki" class="w-100 min-vh-100 bg-black-50 dn">
+    <div class="w-70 center flex flex-column">
+      <div class="pa3 f3 lh-copy">
+        <h1 class="ma0 fw1 f1 tc">Wiki</h1>
+        <p>Coming soon</p>
+      </div>
+    </div>
+  </main>
+  <main id="about" class="w-100 min-vh-100 bg-black-50 dn">
+    <div class="w-70 center flex flex-column">
+      <div class="pa3 f3 lh-copy">
+        <h1 class="ma0 fw1 f1 tc">About</h1>
+        <p>Domesticated Catgirl Simulator (or DCGS for short) is a simulation game that is currently experienced in your browser. The concept of it is to domesticate a "nekomimi" by working hard and spoiling harder.</p>
+        <p>We are aiming bigger in development for mobile apps and also trying to head Steam's way and we want to publish our cute pets at their platform.</p>
+        <p>Read more on our Ko-fi page by clicking the respective link below.</p>
+      </div>
+      <div class="pa3 f4 flex flex-row">
+        <a class="link white pv2 ph3" href="https://discordapp.com/invite/RKZCjKb" target="_blank">Join on Discord</a>
+        <a class="link white pv2 ph3" href="https://ko-fi.com/dcgsim" target="_blank">Support on Ko-fi</a>
+      </div>
+    </div>
+  </main>
+  <img src="img/logo.gif" class="absolute ma3 o-50">
+  <script src="js/script.js"></script>
   <script src="js/dragscroll.js"></script>
+  <!--<script src="js/vex.combined.js"></script>-->
 </body>
 </html>
