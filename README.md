@@ -1,14 +1,17 @@
 # 💟 Domesticated Catgirl 🐾
 
-Web application to domesticate and customize a Catgirl.
+Domesticated Catgirl Simulator (or DCGS for short) is a simulation game that is currently experienced in your browser. The concept of it is to domesticate a "nekomimi" by working hard and spoiling harder.
+
+We are aiming bigger in development for mobile apps and also trying to head Steam's way and we want to publish our cute pets at their platform.
+
+Read more on our Ko-fi page by clicking the respective link below.
 ```
 Currently using JavaScript.
 ```
 
-## Collab 💕
+### Links 💕
 
-[Read more about collaborating](https://github.com/Shimeri/Domesticated-Catgirl/issues/1)
+[Play](https://shimeri.github.io/Domesticated-Catgirl/)
+[Discord](https://discordapp.com/invite/RKZCjKb/)
+[Ko-fi](https://ko-fi.com/dcgsim/)
 
-### View simulation 💕
-
-[Click here to try the simulator](https://shimeri.github.io/Domesticated-Catgirl/)
