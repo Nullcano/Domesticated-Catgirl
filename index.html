@@ -150,7 +150,7 @@
     </div>
   </div>
 
-  <div class="upgradestore popup fixed pa3 bg-near-black ba bw1 dn">
+  <div id="upgradestore" class="popup fixed pa3 bg-near-black ba bw1 dn">
     <span class="title mb2 tc">Upgrade Store</span>
     <div id="buyfasterlaptops" class="upg c-hand grow ma2 ba">
       <small class="db pa1 tc ttu">Increase click power</small>
@@ -172,7 +172,7 @@
       <span class="pt2 pb1 ph3 f3 ttu ba">Exit</h2>
     </div>
   </div>
-  <div class="shoppingmall popup fixed pa3 bg-near-black tc ba bw1 dn">
+  <div id="shoppingmall" class="popup fixed pa3 bg-near-black tc ba bw1 dn">
     <span class="title tc">Shopping Mall</span>
     <ul class="list pa0 menu flex flex-row items-center justify-center">
       <li class="active c-hand ph2" data-type="all">All</li>
@@ -183,12 +183,10 @@
       <li class="c-hand ph2" data-type="decoration">Decoration</li>
     </ul>
     <div id="shop" class="list flex flex-column items-center">
-      <div class="ma1" v-for="(item, index) in shop" @click="buyItem(index)" :key="item.name">
-        <span id="tt"><span class="title pb2">{{item.name}}</span><span class="db pb2">Price: {{item.cost}}</span><span class="db pv2 bt bw1 b--dcgs">{{item.desc}}</span></span>
-      </div>
+
     </div>
-    <div id="exitshoppingmall" class="c-hand w4 center mv3 pt2 pb1 f3 ttu ba">
-      <span>Exit</span>
+    <div id="exitshoppingmall" class="c-hand mt3 tc">
+      <span class="pt2 pb1 ph3 f3 ttu ba">Exit</span>
     </div>
   </div>
   <div class="lootcrateshop popup fixed pa3 bg-near-black tc ba bw1 dn">
@@ -316,6 +314,6 @@
   <img src="img/logo.gif" class="absolute ma3 o-50">
   <script src="js/script.js"></script>
   <script src="js/dragscroll.js"></script>
-  <script src="js/vex.combined.js"></script>
+  <!--<script src="js/vex.combined.js"></script>-->
 </body>
 </html>
