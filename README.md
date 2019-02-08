@@ -11,7 +11,5 @@ Currently using JavaScript.
 
 ### Links 💕
 
-[Play](https://shimeri.github.io/Domesticated-Catgirl/)
-[Discord](https://discordapp.com/invite/RKZCjKb/)
-[Ko-fi](https://ko-fi.com/dcgsim/)
+[Play](https://shimeri.github.io/Domesticated-Catgirl/) ‹› [Discord](https://discordapp.com/invite/RKZCjKb/) ‹› [Ko-fi](https://ko-fi.com/dcgsim/)
 
